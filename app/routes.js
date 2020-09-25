@@ -2,90 +2,94 @@ const express = require('express')
 const router = express.Router()
 
 const allFiles = {
-  name: "Wildlife reports",
   folders: {
-    "goose-reports": {
-      name: "Goose reports",
+    "wildlife-reports": {
+      name: "Wildlife reports",
       folders: {
-        "goose-annual": {
-          name: "Annual reports",
+        "goose-reports": {
+          name: "Goose reports",
           folders: {
-            "goose-annual-supplements": {
-              name: "Supplementary information",
+            "goose-annual": {
+              name: "Annual reports",
+              folders: {
+                "goose-annual-supplements": {
+                  name: "Supplementary information",
+                  files: {
+                    "goose-annual-supplement-1": {
+                      name: "Appendix 1.txt",
+                      icon: "🧾"
+                    },
+                    "goose-annual-supplement-2": {
+                      name: "Appendix 2.txt",
+                      icon: "🧾"
+                    }
+                  }
+                }
+              },
               files: {
-                "goose-annual-supplement-1": {
-                  name: "Appendix 1.txt",
+                "goose-2005": {
+                  name: "Geese 2005.docx",
                   icon: "🧾"
                 },
-                "goose-annual-supplement-2": {
-                  name: "Appendix 2.txt",
+                "goose-2006": {
+                  name: "Geese 2006.docx",
                   icon: "🧾"
-                }
+                },
+                "goose-2007": {
+                  name: "Geese 2007.docx",
+                  icon: "🧾"
+                },
+                "goose-2008": {
+                  name: "Geese 2008.docx",
+                  icon: "🧾"
+                },
+                "goose-2009": {
+                  name: "Geese 2009.docx",
+                  icon: "🧾"
+                },
+                "goose-2010": {
+                  name: "Geese 2010.docx",
+                  icon: "🧾"
+                },
               }
             }
           },
           files: {
-            "goose-2005": {
-              name: "Geese 2005.docx",
-              icon: "🧾"
+            "goose-photo": {
+              name: "Goose photo.png",
+              icon: "🖼️"
+            }
+          }
+        },
+        "heron-reports": {
+          name: "Heron reports",
+          files: {
+            "heron-photo": {
+              name: "Heron photo.png",
+              icon: "🖼️"
             },
-            "goose-2006": {
-              name: "Geese 2006.docx",
-              icon: "🧾"
-            },
-            "goose-2007": {
-              name: "Geese 2007.docx",
-              icon: "🧾"
-            },
-            "goose-2008": {
-              name: "Geese 2008.docx",
-              icon: "🧾"
-            },
-            "goose-2009": {
-              name: "Geese 2009.docx",
-              icon: "🧾"
-            },
-            "goose-2010": {
-              name: "Geese 2010.docx",
-              icon: "🧾"
-            },
+            "heron-with-fish": {
+              name: "Heron with fish.jpg",
+              icon: "🖼️"
+            }
           }
         }
       },
       files: {
-        "goose-photo": {
-          name: "Goose photo.png",
-          icon: "🖼️"
-        }
-      }
-    },
-    "heron-reports": {
-      name: "Heron reports",
-      files: {
-        "heron-photo": {
-          name: "Heron photo.png",
+        "annual-report": {
+          name: "Annual report.docx",
+          icon: "🧾"
+        },
+        "stats": {
+          name: "Statistics.xlsx",
+          icon: "📊"
+        },
+        "wildlife-photo": {
+          name: "Wildlife photo.jpg",
           icon: "🖼️"
         },
-        "heron-with-fish": {
-          name: "Heron with fish.jpg",
-          icon: "🖼️"
-        }
       }
     }
-  },
-  files: {
-    "annual-report": {
-      name: "Annual report.docx",
-      icon: "🧾"
-    },
-    "stats": {
-      name: "Statistics.xlsx",
-      icon: "📊"
-    },
-    "wildlife-photo": {
-      name: "Wildlife photo.jpg",
-      icon: "🖼️"
-    },
   }
 }
 
@@ -99,10 +103,6 @@ const getFiles = (files, pathParts) => {
 }
 
 // Add your routes here - above the module.exports line
-
-router.get('/browse', function(req, res) {
-  res.render('browse', { currentPath: [], contents : allFiles });
-});
 
 router.get('/browse/:path', function(req, res) {
   const pathParts = req.params.path.split("/");
