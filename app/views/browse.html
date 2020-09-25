@@ -23,7 +23,12 @@
         <tbody class="govuk-table__body">
           {% for folderId, folder in contents.folders %}
             <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__header">📁 {{folder.name}}</th>
+              <th scope="row" class="govuk-table__header">
+                📁
+                <a href="/browse/{{ currentPath.concat(folderId).join('%2F') }}">
+                  {{folder.name}}
+                </a>
+              </th>
               <td class="govuk-table__cell">Insert size</td>
             </tr>
           {% endfor %}

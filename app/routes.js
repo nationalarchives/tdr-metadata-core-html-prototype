@@ -101,14 +101,14 @@ const getFiles = (files, pathParts) => {
 // Add your routes here - above the module.exports line
 
 router.get('/browse', function(req, res) {
-  res.render('browse', { contents : allFiles });
+  res.render('browse', { currentPath: [], contents : allFiles });
 });
 
 router.get('/browse/:path', function(req, res) {
   const pathParts = req.params.path.split("/");
   const files = getFiles(allFiles, pathParts)
 
-  res.render('browse', { contents : files });
+  res.render('browse', { currentPath: pathParts, contents : files });
 });
 
 module.exports = router
