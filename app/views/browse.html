@@ -21,13 +21,13 @@
           </tr>
         </thead>
         <tbody class="govuk-table__body">
-          {% for folder in contents.folders %}
+          {% for folderId, folder in contents.folders %}
             <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__header">📁 {{folder.name}}</th>
               <td class="govuk-table__cell">Insert size</td>
             </tr>
           {% endfor %}
-          {% for file in contents.files %}
+          {% for fileId, file in contents.files %}
             <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__header">{{file.icon}} {{file.name}}</th>
               <td class="govuk-table__cell"></td>

@@ -1,117 +1,112 @@
 const express = require('express')
 const router = express.Router()
 
-const files = {
-  id: "wildlife-reports",
+const allFiles = {
   name: "Wildlife reports",
-  folders: [
-    {
-      id: "goose-reports",
+  folders: {
+    "goose-reports": {
       name: "Goose reports",
-      folders: [
-        {
-          id: "goose-annual",
+      folders: {
+        "goose-annual": {
           name: "Annual reports",
-          folders: [
-            {
-              id: "goose-annual-supplements",
+          folders: {
+            "goose-annual-supplements": {
               name: "Supplementary information",
-              files: [
-                {
-                  id: "goose-annual-supplement-1",
+              files: {
+                "goose-annual-supplement-1": {
                   name: "Appendix 1.txt",
                   icon: "🧾"
                 },
-                {
-                  id: "goose-annual-supplement-2",
+                "goose-annual-supplement-2": {
                   name: "Appendix 2.txt",
                   icon: "🧾"
                 }
-              ]
+              }
             }
-          ],
-          files: [
-            {
-              id: "goose-2005",
+          },
+          files: {
+            "goose-2005": {
               name: "Geese 2005.docx",
               icon: "🧾"
             },
-            {
-              id: "goose-2006",
+            "goose-2006": {
               name: "Geese 2006.docx",
               icon: "🧾"
             },
-            {
-              id: "goose-2007",
+            "goose-2007": {
               name: "Geese 2007.docx",
               icon: "🧾"
             },
-            {
-              id: "goose-2008",
+            "goose-2008": {
               name: "Geese 2008.docx",
               icon: "🧾"
             },
-            {
-              id: "goose-2009",
+            "goose-2009": {
               name: "Geese 2009.docx",
               icon: "🧾"
             },
-            {
-              id: "goose-2010",
+            "goose-2010": {
               name: "Geese 2010.docx",
               icon: "🧾"
             },
-          ]
+          }
         }
-      ],
-      files: [
-        {
-          id: "goose-photo",
+      },
+      files: {
+        "goose-photo": {
           name: "Goose photo.png",
           icon: "🖼️"
         }
-      ]
+      }
     },
-    {
-      id: "heron-reports",
+    "heron-reports": {
       name: "Heron reports",
-      files: [
-        {
-          id: "heron-photo",
+      files: {
+        "heron-photo": {
           name: "Heron photo.png",
           icon: "🖼️"
         },
-        {
-          id: "heron-with-fish",
+        "heron-with-fish": {
           name: "Heron with fish.jpg",
           icon: "🖼️"
         }
-      ]
+      }
     }
-  ],
-  files: [
-    {
-      id: "annual-report",
+  },
+  files: {
+    "annual-report": {
       name: "Annual report.docx",
       icon: "🧾"
     },
-    {
-      id: "stats",
+    "stats": {
       name: "Statistics.xlsx",
       icon: "📊"
     },
-    {
-      id: "wildlife-photo",
+    "wildlife-photo": {
       name: "Wildlife photo.jpg",
       icon: "🖼️"
     },
-  ]
+  }
+}
+
+const getFiles = (files, pathParts) => {
+  if (pathParts.length == 0) {
+    return files;
+  } else {
+    const nextFiles = files.folders[pathParts[0]];
+    return getFiles(nextFiles, pathParts.slice(1));
+  }
 }
 
 // Add your routes here - above the module.exports line
 
+router.get('/browse', function(req, res) {
+  res.render('browse', { contents : allFiles });
+});
+
 router.get('/browse/:path', function(req, res) {
-  console.log(`Visiting ${req.params.path}`)
+  const pathParts = req.params.path.split("/");
+  const files = getFiles(allFiles, pathParts)
 
   res.render('browse', { contents : files });
 });
