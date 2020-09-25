@@ -13,6 +13,16 @@
         Edit metadata
       </h1>{{releaseVersion | log }}
 
+      <div class="govuk-breadcrumbs ">
+        <ol class="govuk-breadcrumbs__list">
+          {% for folder in breadcrumbs %}
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="/browse/{{folder.path}}">{{folder.name}}</a>
+            </li>
+          {% endfor %}
+        </ol>
+      </div>
+
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">

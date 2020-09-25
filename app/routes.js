@@ -102,13 +102,35 @@ const getFiles = (files, pathParts) => {
   }
 }
 
+const getBreadcrumbs = (breadcrumbs, files, pathParts) => {
+  if (pathParts.length == 0) {
+    return breadcrumbs;
+  } else {
+    const folderId = pathParts[0]
+    const nextFolder = files.folders[folderId];
+    const pathSoFar = breadcrumbs.map(breadcrumb => breadcrumb.id)
+    const nextPath = pathSoFar.concat(folderId).join("%2F");
+    const nextBreadcrumbs = breadcrumbs.concat({
+      path: nextPath,
+      id: folderId,
+      name: nextFolder.name
+    });
+    return getBreadcrumbs(nextBreadcrumbs, nextFolder, pathParts.slice(1));
+  }
+}
+
 // Add your routes here - above the module.exports line
 
 router.get('/browse/:path', function(req, res) {
   const pathParts = req.params.path.split("/");
   const files = getFiles(allFiles, pathParts)
+  const breadcrumbs = getBreadcrumbs([], allFiles, pathParts)
 
-  res.render('browse', { currentPath: pathParts, contents : files });
+  res.render('browse', {
+    currentPath: pathParts,
+    breadcrumbs: breadcrumbs,
+    contents : files
+  });
 });
 
 module.exports = router
