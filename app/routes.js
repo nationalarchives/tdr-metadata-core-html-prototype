@@ -95,6 +95,14 @@ const allFiles = {
   }
 }
 
+const allowedFields = {
+  dateCreated: { name: "Date created" },
+  geolocation: { name: "Geolocation" },
+  language: { name: "Language" },
+  originalDepartment: { name: "Original department" },
+  summary: { name: "Summary" }
+}
+
 const getFiles = (files, pathParts) => {
   if (pathParts.length == 0) {
     return files;
@@ -164,6 +172,20 @@ router.get('/edit-folder/:path', function(req, res) {
     breadcrumbs: breadcrumbs,
     contents : files,
     countFiles: countFiles
+  });
+});
+
+router.get('/add-field-to-folder/:path', function(req, res) {
+  const pathParts = req.params.path.split("/");
+  const files = getFiles(allFiles, pathParts)
+  const breadcrumbs = getBreadcrumbs([], allFiles, pathParts)
+
+  res.render('add-field-to-folder', {
+    currentPath: pathParts,
+    breadcrumbs: breadcrumbs,
+    contents : files,
+    countFiles: countFiles,
+    allowedFields: allowedFields
   });
 });
 
