@@ -14,6 +14,7 @@ const allFiles = {
               folders: {
                 "goose-annual-supplements": {
                   name: "Supplementary information",
+                  folders: {},
                   files: {
                     "goose-annual-supplement-1": {
                       name: "Appendix 1.txt",
@@ -63,6 +64,7 @@ const allFiles = {
         },
         "heron-reports": {
           name: "Heron reports",
+          folders: {},
           files: {
             "heron-photo": {
               name: "Heron photo.png",
@@ -119,6 +121,24 @@ const getBreadcrumbs = (breadcrumbs, files, pathParts) => {
   }
 }
 
+const countFilesRecursive = (parentFolders, fileCount) => {
+  const childFolderGroups = parentFolders
+    .map(folder => Object.values(folder.folders))
+    .flat();
+  const newCount = fileCount + parentFolders
+    .map(folder => Object.keys(folder.files).length)
+    .reduce((a, b) => a + b, 0);
+  if (childFolderGroups.length == 0) {
+    return newCount;
+  } else {
+    return countFilesRecursive(childFolderGroups, newCount);
+  }
+}
+
+const countFiles = (parentFolder) => {
+  return countFilesRecursive([parentFolder], 0);
+}
+
 // Add your routes here - above the module.exports line
 
 router.get('/browse/:path', function(req, res) {
@@ -129,7 +149,8 @@ router.get('/browse/:path', function(req, res) {
   res.render('browse', {
     currentPath: pathParts,
     breadcrumbs: breadcrumbs,
-    contents : files
+    contents: files,
+    countFiles: countFiles
   });
 });
 
@@ -141,7 +162,8 @@ router.get('/edit-folder/:path', function(req, res) {
   res.render('edit-folder', {
     currentPath: pathParts,
     breadcrumbs: breadcrumbs,
-    contents : files
+    contents : files,
+    countFiles: countFiles
   });
 });
 

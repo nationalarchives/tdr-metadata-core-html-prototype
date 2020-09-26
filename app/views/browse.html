@@ -43,7 +43,7 @@
                   {{folder.name}}
                 </a>
               </th>
-              <td class="govuk-table__cell">Insert size</td>
+              <td class="govuk-table__cell">{{ countFiles(folder) }}</td>
             </tr>
           {% endfor %}
           {% for fileId, file in contents.files %}
