@@ -151,8 +151,8 @@ const countFiles = (parentFolder) => {
 
 router.get('/browse/:path', function(req, res) {
   const pathParts = req.params.path.split("/");
-  const files = getFiles(allFiles, pathParts)
-  const breadcrumbs = getBreadcrumbs([], allFiles, pathParts)
+  const files = getFiles(allFiles, pathParts);
+  const breadcrumbs = getBreadcrumbs([], allFiles, pathParts);
 
   res.render('browse', {
     currentPath: pathParts,
@@ -164,8 +164,8 @@ router.get('/browse/:path', function(req, res) {
 
 router.get('/edit-folder/:path', function(req, res) {
   const pathParts = req.params.path.split("/");
-  const files = getFiles(allFiles, pathParts)
-  const breadcrumbs = getBreadcrumbs([], allFiles, pathParts)
+  const files = getFiles(allFiles, pathParts);
+  const breadcrumbs = getBreadcrumbs([], allFiles, pathParts);
 
   res.render('edit-folder', {
     currentPath: pathParts,
@@ -177,8 +177,8 @@ router.get('/edit-folder/:path', function(req, res) {
 
 router.get('/add-field-to-folder/:path', function(req, res) {
   const pathParts = req.params.path.split("/");
-  const files = getFiles(allFiles, pathParts)
-  const breadcrumbs = getBreadcrumbs([], allFiles, pathParts)
+  const files = getFiles(allFiles, pathParts);
+  const breadcrumbs = getBreadcrumbs([], allFiles, pathParts);
 
   res.render('add-field-to-folder', {
     currentPath: pathParts,
