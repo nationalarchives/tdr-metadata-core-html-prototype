@@ -189,4 +189,26 @@ router.get('/add-field-to-folder/:path', function(req, res) {
   });
 });
 
+router.post('/add-field-to-folder/:path', function(req, res) {
+  const fieldToAdd = req.session.data["choose-field"];
+
+  res.redirect(`/set-folder-field-value/${req.params.path}/${fieldToAdd}`);
+});
+
+router.get('/set-folder-field-value/:path/:fieldId', function(req, res) {
+  const pathParts = req.params.path.split("/");
+  const files = getFiles(allFiles, pathParts);
+  const breadcrumbs = getBreadcrumbs([], allFiles, pathParts);
+
+  res.render('set-folder-field-value', {
+    fieldId: req.params.fieldId,
+    field: allowedFields[req.params.fieldId],
+    currentPath: pathParts,
+    breadcrumbs: breadcrumbs,
+    contents : files,
+    countFiles: countFiles,
+    allowedFields: allowedFields
+  });
+});
+
 module.exports = router

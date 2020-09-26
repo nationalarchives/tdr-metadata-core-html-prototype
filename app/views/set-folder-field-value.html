@@ -31,24 +31,14 @@
         </strong>
       </div>
 
-      <form class="form" method="post">
+      <form class="form" action="/set-folder-field-value" method="get">
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h1 class="govuk-fieldset__heading">
-                What field should be added to the '{{ contents.name }}' folder?
-              </h1>
-            </legend>
-            <div class="govuk-radios">
-              {% for fieldId, field in allowedFields %}
-                <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="choose-field-{{ fieldId }}" name="choose-field" type="radio" value="{{ fieldId }}">
-                  <label class="govuk-label govuk-radios__label" for="choose-field-{{ fieldId }}">
-                    {{ field.name }}
-                  </label>
-                </div>
-              {% endfor %}
-          </fieldset>
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="event-name">
+              {{ field.name }}
+            </label>
+          </h1>
+          <input class="govuk-input" id="event-name" name="event-name" type="text">
         </div>
 
         <button class="govuk-button" data-module="govuk-button">Continue</button>
