@@ -13,7 +13,7 @@
         Edit metadata
       </h1>{{releaseVersion | log }}
 
-      <div class="govuk-breadcrumbs ">
+      <div class="govuk-breadcrumbs">
         <ol class="govuk-breadcrumbs__list">
           {% for folder in breadcrumbs %}
             <li class="govuk-breadcrumbs__list-item">
@@ -22,6 +22,10 @@
           {% endfor %}
         </ol>
       </div>
+
+      <a href="/edit-folder/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Edit metadata for all files in this folder
+      </a>
 
       <table class="govuk-table">
         <thead class="govuk-table__head">

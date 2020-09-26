@@ -133,4 +133,16 @@ router.get('/browse/:path', function(req, res) {
   });
 });
 
+router.get('/edit-folder/:path', function(req, res) {
+  const pathParts = req.params.path.split("/");
+  const files = getFiles(allFiles, pathParts)
+  const breadcrumbs = getBreadcrumbs([], allFiles, pathParts)
+
+  res.render('edit-folder', {
+    currentPath: pathParts,
+    breadcrumbs: breadcrumbs,
+    contents : files
+  });
+});
+
 module.exports = router
