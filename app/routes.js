@@ -218,6 +218,13 @@ const getFolderMetadata = (fileIds, allFileMetadata) => {
 router.get('/browse/:path', function(req, res) {
   const pathParts = req.params.path.split("/");
   const files = getFiles(allFiles, pathParts);
+
+  if (!files) {
+    // Assume this is is not a folder, so redirect to the files page
+    res.redirect(`/file-summary/${pathParts.join("%2F")}`);
+  }
+  console.log("Files:", files);
+
   const breadcrumbs = getBreadcrumbs([], allFiles, pathParts);
 
   res.render('browse', {
