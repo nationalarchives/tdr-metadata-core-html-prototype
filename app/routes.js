@@ -215,6 +215,17 @@ const getFolderMetadata = (fileIds, allFileMetadata) => {
 
 // Add your routes here - above the module.exports line
 
+router.get("/", function(req, res) {
+  const parentFolder = allFiles.folders[Object.keys(allFiles.folders)[0]]
+  const totalFiles = countFiles(parentFolder);
+  const parentFolderName = parentFolder.name;
+
+  res.render("index", {
+    totalFiles: totalFiles,
+    parentFolderName: parentFolderName
+  });
+});
+
 router.get('/browse/:path', function(req, res) {
   const pathParts = req.params.path.split("/");
   const files = getFiles(allFiles, pathParts);
