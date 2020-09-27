@@ -311,7 +311,7 @@ router.post('/add-field-to-file/:path', function(req, res) {
   const fieldToAdd = req.session.data["choose-field"];
   const escapedPath = req.params.path.split("/").join("%2F");
 
-  res.redirect(`/set-folder-field-value/${escapedPath}/${fieldToAdd}`);
+  res.redirect(`/set-file-field-value/${escapedPath}/${fieldToAdd}`);
 });
 
 router.get('/set-folder-field-value/:path/:fieldId', function(req, res) {
@@ -346,6 +346,35 @@ router.post('/set-folder-field-value/:path/:fieldId', function(req, res) {
 
   const escapedPath = req.params.path.split("/").join("%2F");
   res.redirect(`/edit-folder/${escapedPath}`);
+});
+
+router.get('/set-file-field-value/:path/:fieldId', function(req, res) {
+  const pathParts = req.params.path.split("/");
+  const fileId = pathParts.slice(-1);
+  const breadcrumbs = getFileBreadcrumbs([], allFiles, pathParts);
+
+  res.render('set-file-field-value', {
+    fieldId: req.params.fieldId,
+    field: allowedFields[req.params.fieldId],
+    currentPath: pathParts,
+    breadcrumbs: breadcrumbs,
+    allowedFields: allowedFields
+  });
+});
+
+router.post('/set-file-field-value/:path/:fieldId', function(req, res) {
+  const pathParts = req.params.path.split("/");
+  const fileId = pathParts.slice(-1);
+
+  const fieldId = req.params.fieldId;
+  const value = req.session.data["field-value"];
+
+  req.session.data.fileMetadata = req.session.data.fileMetadata || {};
+  req.session.data.fileMetadata[fileId] = req.session.data.fileMetadata[fileId] || {};
+  req.session.data.fileMetadata[fileId][fieldId] = value;
+
+  const escapedPath = req.params.path.split("/").join("%2F");
+  res.redirect(`/file-summary/${escapedPath}`);
 });
 
 module.exports = router
