@@ -48,7 +48,12 @@
           {% endfor %}
           {% for fileId, file in contents.files %}
             <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__header">{{file.icon}} {{file.name}}</th>
+              <th scope="row" class="govuk-table__header">
+                {{file.icon}}
+                <a href="/file-summary/{{ currentPath.concat(fileId).join('%2F') }}">
+                  {{file.name}}
+                </a>
+              </th>
               <td class="govuk-table__cell"></td>
             </tr>
           {% endfor %}

@@ -1,0 +1,60 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Edit metadata for file
+      </h1>{{releaseVersion | log }}
+
+      <div class="govuk-breadcrumbs">
+        <ol class="govuk-breadcrumbs__list">
+          {% for breadcrumb in breadcrumbs %}
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="/browse/{{breadcrumb.path}}">{{breadcrumb.name}}</a>
+            </li>
+          {% endfor %}
+        </ol>
+      </div>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ fileDetails.name }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+        {% for fieldId, metadataSummary in fileMetadata %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              {{ allowedFields[fieldId].name }}
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ metadataSummary }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a href="/set-folder-field-value/{{ currentPath.join('%2F') }}/{{ fieldId }}">
+                Edit values
+              </a>
+            </dd>
+          </div>
+        {% endfor %}
+      </dl>
+
+      <a href="/add-field-to-folder/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Add metadata field
+      </a>
+    </div>
+  </div>
+
+{% endblock %}

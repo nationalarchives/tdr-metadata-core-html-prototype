@@ -129,6 +129,32 @@ const getBreadcrumbs = (breadcrumbs, files, pathParts) => {
   }
 }
 
+const getFileBreadcrumbs = (breadcrumbs, files, pathParts) => {
+  if (pathParts.length === 1) {
+    const fileId = pathParts[0];
+    const file = files.files[fileId];
+    const pathSoFar = breadcrumbs.map(breadcrumb => breadcrumb.id)
+    const nextPath = pathSoFar.concat(fileId).join("%2F");
+    const fileBreadcrumbs = breadcrumbs.concat({
+      path: nextPath,
+      id: fileId,
+      name: file.name
+    });
+    return fileBreadcrumbs;
+  } else {
+    const folderId = pathParts[0]
+    const nextFolder = files.folders[folderId];
+    const pathSoFar = breadcrumbs.map(breadcrumb => breadcrumb.id)
+    const nextPath = pathSoFar.concat(folderId).join("%2F");
+    const nextBreadcrumbs = breadcrumbs.concat({
+      path: nextPath,
+      id: folderId,
+      name: nextFolder.name
+    });
+    return getFileBreadcrumbs(nextBreadcrumbs, nextFolder, pathParts.slice(1));
+  }
+}
+
 const countFiles = (parentFolder) => {
   return getFilesInFolder(parentFolder).length;
 }
@@ -209,8 +235,6 @@ router.get('/edit-folder/:path', function(req, res) {
 
   const fileIds = getFilesInFolder(files);
   const folderMetadata = getFolderMetadata(fileIds, req.session.data.fileMetadata || {});
-  console.log("Folder metadata:");
-  console.log(folderMetadata);
 
   res.render('edit-folder', {
     currentPath: pathParts,
@@ -218,6 +242,24 @@ router.get('/edit-folder/:path', function(req, res) {
     contents : files,
     countFiles: countFiles,
     folderMetadata: folderMetadata,
+    allowedFields: allowedFields
+  });
+});
+
+router.get('/file-summary/:path', function(req, res) {
+  const pathParts = req.params.path.split("/");
+  const fileId = pathParts.slice(-1);
+  const parentFolder = getFiles(allFiles, pathParts.slice(0, -1));
+  const fileDetails = parentFolder.files[fileId];
+  const breadcrumbs = getFileBreadcrumbs([], allFiles, pathParts);
+
+  const fileMetadata = (req.session.data.fileMetadata || {})[fileId] || {};
+
+  res.render('file-summary', {
+    currentPath: pathParts,
+    breadcrumbs: breadcrumbs,
+    fileDetails: fileDetails,
+    fileMetadata: fileMetadata,
     allowedFields: allowedFields
   });
 });
