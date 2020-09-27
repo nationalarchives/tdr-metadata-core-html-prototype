@@ -228,10 +228,14 @@ router.post('/set-folder-field-value/:path/:fieldId', function(req, res) {
   console.log("File IDs:");
   console.log(fileIds);
 
+  const fieldId = req.params.fieldId;
   const value = req.session.data["field-value"];
 
   req.session.data.fileMetadata = req.session.data.fileMetadata || {};
-
+  fileIds.forEach(fileId => {
+    req.session.data.fileMetadata[fileId] = req.session.data.fileMetadata[fileId] || {};
+    req.session.data.fileMetadata[fileId][fieldId] = value;
+  });
 
   console.log("After:");
   console.log(req.session.data);
