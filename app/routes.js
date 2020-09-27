@@ -147,6 +147,25 @@ const countFiles = (parentFolder) => {
   return countFilesRecursive([parentFolder], 0);
 }
 
+const getFilesInFolderRecursive = (parentFolders, fileIds) => {
+  const childFolderGroups = parentFolders
+    .map(folder => Object.values(folder.folders))
+    .flat();
+  const newFileIds = fileIds.concat(
+    parentFolders.map(folder => Object.keys(folder.files))
+  ).flat();
+
+  if (childFolderGroups.length == 0) {
+    return newFileIds;
+  } else {
+    return getFilesInFolderRecursive(childFolderGroups, newFileIds);
+  }
+}
+
+const getFilesInFolder = (parentFolder) => {
+  return getFilesInFolderRecursive([parentFolder], []);
+}
+
 // Add your routes here - above the module.exports line
 
 router.get('/browse/:path', function(req, res) {
@@ -215,6 +234,13 @@ router.get('/set-folder-field-value/:path/:fieldId', function(req, res) {
 router.post('/set-folder-field-value/:path/:fieldId', function(req, res) {
   console.log("Session data:");
   console.log(req.session.data);
+
+  const pathParts = req.params.path.split("/");
+  const folder = getFiles(allFiles, pathParts);
+  const fileIds = getFilesInFolder(folder);
+
+  console.log("File IDs:");
+  console.log(fileIds);
 
   const value = req.session.data["field-value"];
 
