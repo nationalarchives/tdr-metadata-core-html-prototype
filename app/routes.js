@@ -154,16 +154,23 @@ const getFilesInFolder = (parentFolder) => {
 
 const getFolderMetadata = (fileIds, allFileMetadata) => {
   const folderMetadata = {};
-  fileIds.forEach(fileId => {
-    const fileMetadata = allFileMetadata[fileId] || {};
-    Object.keys(fileMetadata).forEach(fieldId => {
-      folderMetadata[fieldId] = folderMetadata[fieldId] || [];
-      const metadataValue = allFileMetadata[fileId][fieldId];
-      if (!folderMetadata[fieldId].includes(metadataValue)) {
-        folderMetadata[fieldId].push(metadataValue);
+
+  Object.keys(allowedFields).forEach(fieldId => {
+    const fieldValues = [];
+
+    fileIds.forEach(fileId => {
+      const fileMetadata = allFileMetadata[fileId] || {};
+      const metadataValue = fileMetadata[fieldId] || null;
+
+      if (!fieldValues.includes(metadataValue)) {
+        fieldValues.push(metadataValue);
       }
     });
+
+    folderMetadata[fieldId] = fieldValues;
   });
+  // TODO: Filter out values where only null
+  // TODO: Add summary
 
   return folderMetadata;
 }
