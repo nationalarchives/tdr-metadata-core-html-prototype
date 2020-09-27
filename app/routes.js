@@ -152,6 +152,24 @@ const getFilesInFolder = (parentFolder) => {
   return getFilesInFolderRecursive([parentFolder], []);
 }
 
+const getFolderMetadata = (fileIds, allFileMetadata) => {
+  const folderMetadata = {};
+  fileIds.forEach(fileId => {
+    const fileMetadata = allFileMetadata[fileId] || {};
+    Object.keys(fileMetadata).forEach(fieldId => {
+      console.log(`FileId: ${fileId}, fieldId: ${fieldId}`);
+      console.log(fileMetadata);
+      folderMetadata[fieldId] = folderMetadata[fieldId] || [];
+      const metadataValue = allFileMetadata[fileId][fieldId];
+      if (!folderMetadata[fieldId].includes(metadataValue)) {
+        folderMetadata[fieldId].push(metadataValue);
+      }
+    });
+  });
+
+  return folderMetadata;
+}
+
 // Add your routes here - above the module.exports line
 
 router.get('/browse/:path', function(req, res) {
@@ -171,6 +189,11 @@ router.get('/edit-folder/:path', function(req, res) {
   const pathParts = req.params.path.split("/");
   const files = getFiles(allFiles, pathParts);
   const breadcrumbs = getBreadcrumbs([], allFiles, pathParts);
+
+  const fileIds = getFilesInFolder(files);
+  const folderMetadata = getFolderMetadata(fileIds, req.session.data.fileMetadata || {});
+  console.log("Folder metadata:");
+  console.log(folderMetadata);
 
   res.render('edit-folder', {
     currentPath: pathParts,
