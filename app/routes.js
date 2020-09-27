@@ -218,15 +218,9 @@ router.get('/set-folder-field-value/:path/:fieldId', function(req, res) {
 });
 
 router.post('/set-folder-field-value/:path/:fieldId', function(req, res) {
-  console.log("Session data:");
-  console.log(req.session.data);
-
   const pathParts = req.params.path.split("/");
   const folder = getFiles(allFiles, pathParts);
   const fileIds = getFilesInFolder(folder);
-
-  console.log("File IDs:");
-  console.log(fileIds);
 
   const fieldId = req.params.fieldId;
   const value = req.session.data["field-value"];
@@ -236,9 +230,6 @@ router.post('/set-folder-field-value/:path/:fieldId', function(req, res) {
     req.session.data.fileMetadata[fileId] = req.session.data.fileMetadata[fileId] || {};
     req.session.data.fileMetadata[fileId][fieldId] = value;
   });
-
-  console.log("After:");
-  console.log(req.session.data);
 
   const escapedPath = req.params.path.split("/").join("%2F");
   res.redirect(`/edit-folder/${escapedPath}`);
