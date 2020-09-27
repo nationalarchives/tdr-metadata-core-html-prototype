@@ -31,17 +31,17 @@
         </strong>
       </div>
 
-      <form class="form" action="/set-folder-field-value" method="get">
+      <form class="form" method="post">
         <div class="govuk-form-group">
           <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="event-name">
+            <label class="govuk-label govuk-label--l" for="field-value">
               {{ field.name }}
             </label>
           </h1>
-          <input class="govuk-input" id="event-name" name="event-name" type="text">
+          <input class="govuk-input" id="field-value" name="field-value" type="text">
         </div>
 
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
+        <button class="govuk-button" data-module="govuk-button">Save</button>
       </form>
     </div>
   </div>

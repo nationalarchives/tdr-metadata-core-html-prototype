@@ -191,8 +191,9 @@ router.get('/add-field-to-folder/:path', function(req, res) {
 
 router.post('/add-field-to-folder/:path', function(req, res) {
   const fieldToAdd = req.session.data["choose-field"];
+  const escapedPath = req.params.path.split("/").join("%2F");
 
-  res.redirect(`/set-folder-field-value/${req.params.path}/${fieldToAdd}`);
+  res.redirect(`/set-folder-field-value/${escapedPath}/${fieldToAdd}`);
 });
 
 router.get('/set-folder-field-value/:path/:fieldId', function(req, res) {
@@ -209,6 +210,22 @@ router.get('/set-folder-field-value/:path/:fieldId', function(req, res) {
     countFiles: countFiles,
     allowedFields: allowedFields
   });
+});
+
+router.post('/set-folder-field-value/:path/:fieldId', function(req, res) {
+  console.log("Session data:");
+  console.log(req.session.data);
+
+  const value = req.session.data["field-value"];
+
+  req.session.data.fileMetadata = req.session.data.fileMetadata || {};
+
+
+  console.log("After:");
+  console.log(req.session.data);
+
+  const escapedPath = req.params.path.split("/").join("%2F");
+  res.redirect(`/edit-folder/${escapedPath}`);
 });
 
 module.exports = router
