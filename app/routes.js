@@ -169,10 +169,22 @@ const getFolderMetadata = (fileIds, allFileMetadata) => {
 
     folderMetadata[fieldId] = fieldValues;
   });
-  // TODO: Filter out values where only null
-  // TODO: Add summary
 
-  return folderMetadata;
+  const filteredMetadata = {};
+
+  Object.keys(folderMetadata).forEach(fieldId => {
+    const metadataForField = folderMetadata[fieldId];
+
+    if (metadataForField.length === 1) {
+      if (metadataForField[0] !== null) {
+        filteredMetadata[fieldId] = metadataForField[0]
+      }
+    } else {
+      filteredMetadata[fieldId] = "Varies by file";
+    }
+  });
+
+  return filteredMetadata;
 }
 
 // Add your routes here - above the module.exports line

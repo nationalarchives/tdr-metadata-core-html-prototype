@@ -44,13 +44,13 @@
           <dd class="govuk-summary-list__actions">
           </dd>
         </div>
-        {% for fieldId, values in folderMetadata %}
+        {% for fieldId, metadataSummary in folderMetadata %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               {{ allowedFields[fieldId].name }}
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ values }}
+              {{ metadataSummary }}
             </dd>
             <dd class="govuk-summary-list__actions">
             </dd>
