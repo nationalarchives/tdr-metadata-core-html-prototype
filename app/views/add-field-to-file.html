@@ -1,0 +1,51 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Add field to file
+      </h1>{{releaseVersion | log }}
+
+      <div class="govuk-breadcrumbs">
+        <ol class="govuk-breadcrumbs__list">
+          {% for folder in breadcrumbs %}
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="/browse/{{folder.path}}">{{folder.name}}</a>
+            </li>
+          {% endfor %}
+        </ol>
+      </div>
+
+      <form class="form" method="post">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                What field should be added to the '{{ fileDetails.name }}' file?
+              </h1>
+            </legend>
+            <div class="govuk-radios">
+              {% for fieldId, field in allowedFields %}
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="choose-field-{{ fieldId }}" name="choose-field" type="radio" value="{{ fieldId }}">
+                  <label class="govuk-label govuk-radios__label" for="choose-field-{{ fieldId }}">
+                    {{ field.name }}
+                  </label>
+                </div>
+              {% endfor %}
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
