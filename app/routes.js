@@ -129,22 +129,8 @@ const getBreadcrumbs = (breadcrumbs, files, pathParts) => {
   }
 }
 
-const countFilesRecursive = (parentFolders, fileCount) => {
-  const childFolderGroups = parentFolders
-    .map(folder => Object.values(folder.folders))
-    .flat();
-  const newCount = fileCount + parentFolders
-    .map(folder => Object.keys(folder.files).length)
-    .reduce((a, b) => a + b, 0);
-  if (childFolderGroups.length == 0) {
-    return newCount;
-  } else {
-    return countFilesRecursive(childFolderGroups, newCount);
-  }
-}
-
 const countFiles = (parentFolder) => {
-  return countFilesRecursive([parentFolder], 0);
+  return getFilesInFolder(parentFolder).length;
 }
 
 const getFilesInFolderRecursive = (parentFolders, fileIds) => {
