@@ -44,6 +44,18 @@
           <dd class="govuk-summary-list__actions">
           </dd>
         </div>
+        {% for fieldId, values in folderMetadata %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              {{ allowedFields[fieldId].name }}
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ values }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+            </dd>
+          </div>
+        {% endfor %}
       </dl>
 
       <a href="/add-field-to-folder/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">

@@ -157,8 +157,6 @@ const getFolderMetadata = (fileIds, allFileMetadata) => {
   fileIds.forEach(fileId => {
     const fileMetadata = allFileMetadata[fileId] || {};
     Object.keys(fileMetadata).forEach(fieldId => {
-      console.log(`FileId: ${fileId}, fieldId: ${fieldId}`);
-      console.log(fileMetadata);
       folderMetadata[fieldId] = folderMetadata[fieldId] || [];
       const metadataValue = allFileMetadata[fileId][fieldId];
       if (!folderMetadata[fieldId].includes(metadataValue)) {
@@ -199,7 +197,9 @@ router.get('/edit-folder/:path', function(req, res) {
     currentPath: pathParts,
     breadcrumbs: breadcrumbs,
     contents : files,
-    countFiles: countFiles
+    countFiles: countFiles,
+    folderMetadata: folderMetadata,
+    allowedFields: allowedFields
   });
 });
 
