@@ -4,10 +4,10 @@ const router = express.Router()
 const allFiles = {
   folders: {
     "wildlife-reports": {
-      name: "Wildlife reports",
+      name: "My Muffin Records",
       folders: {
         "goose-reports": {
-          name: "Goose reports",
+          name: "Ingredients Reports",
           folders: {
             "goose-annual": {
               name: "Annual reports",
@@ -29,27 +29,27 @@ const allFiles = {
               },
               files: {
                 "goose-2005": {
-                  name: "Geese 2005.docx",
+                  name: "Muffins Sold 2005.docx",
                   icon: "🧾"
                 },
                 "goose-2006": {
-                  name: "Geese 2006.docx",
+                  name: "Muffins Sold 2006.docx",
                   icon: "🧾"
                 },
                 "goose-2007": {
-                  name: "Geese 2007.docx",
+                  name: "Muffins Sold 2007.docx",
                   icon: "🧾"
                 },
                 "goose-2008": {
-                  name: "Geese 2008.docx",
+                  name: "Muffins Sold 2008.docx",
                   icon: "🧾"
                 },
                 "goose-2009": {
-                  name: "Geese 2009.docx",
+                  name: "Muffins Sold 2009.docx",
                   icon: "🧾"
                 },
                 "goose-2010": {
-                  name: "Geese 2010.docx",
+                  name: "Muffins Sold 2010.docx",
                   icon: "🧾"
                 },
               }
@@ -57,21 +57,21 @@ const allFiles = {
           },
           files: {
             "goose-photo": {
-              name: "Goose photo.png",
+              name: "Muffin Photo.png",
               icon: "🖼️"
             }
           }
         },
         "heron-reports": {
-          name: "Heron reports",
+          name: "Muffin Reports",
           folders: {},
           files: {
             "heron-photo": {
-              name: "Heron photo.png",
+              name: "Chocolate Chip Photo.png",
               icon: "🖼️"
             },
             "heron-with-fish": {
-              name: "Heron with fish.jpg",
+              name: "Apple-Cinnamon Photo.jpg",
               icon: "🖼️"
             }
           }
@@ -87,7 +87,7 @@ const allFiles = {
           icon: "📊"
         },
         "wildlife-photo": {
-          name: "Wildlife photo.jpg",
+          name: "Banana Muffins Photo.jpg",
           icon: "🖼️"
         },
       }
