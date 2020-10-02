@@ -12,6 +12,7 @@
       <h1 class="govuk-heading-xl">
         Add field to all files in folder
       </h1>{{releaseVersion | log }}
+      <p class="govuk-body">Here you may select a field which you can add extra metadata to.</p>
 
       <div class="govuk-breadcrumbs">
         <ol class="govuk-breadcrumbs__list">
@@ -22,12 +23,13 @@
           {% endfor %}
         </ol>
       </div>
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
       <div class="govuk-warning-text">
         <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
         <strong class="govuk-warning-text__text">
           <span class="govuk-warning-text__assistive">Warning</span>
-          This will save a new value for the field in {{ countFiles(contents) }} files. It may overwrite a value that you set earlier.
+          Please note that this action applies to all {{ countFiles(contents) }} files in this folder. It may overwrite a value that you set earlier.
         </strong>
       </div>
 

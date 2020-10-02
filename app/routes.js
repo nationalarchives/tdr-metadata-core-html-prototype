@@ -97,10 +97,8 @@ const allFiles = {
 
 const allowedFields = {
   dateCreated: { name: "Date created" },
-  geolocation: { name: "Geolocation" },
-  language: { name: "Language" },
-  originalDepartment: { name: "Original department" },
-  summary: { name: "Summary" }
+  dateRange: { name: "Date range" },
+  summary: { name: "Add a Summary" }
 }
 
 const getFiles = (files, pathParts) => {

@@ -6,14 +6,22 @@
 {% endblock %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <a href="/" class="govuk-back-link">Back to summary</a>
       <h1 class="govuk-heading-xl">
         Edit metadata
-        <p class="govuk-body">If you would like to add further description to your transfer you can do so on this page, otherwise you can continue with your transfer.</p>
       </h1>{{releaseVersion | log }}
-      
+      <p class="govuk-body">If you would like to add further description to your transfer you can do so on this page, otherwise you can continue with your transfer.</p>
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <a href="/edit-folder/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Add metadata for all files in folder
+      </a>
+
+      <a href="/edit-folder/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Save changes
+      </a>
 
       <div class="govuk-breadcrumbs">
         <ol class="govuk-breadcrumbs__list">
@@ -25,15 +33,12 @@
         </ol>
       </div>
 
-      <a href="/edit-folder/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Edit metadata for all files in this folder
-      </a>
-
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Name</th>
-            <th scope="col" class="govuk-table__header">Total files</th>
+            <h3 class="govuk-heading-m">📁 My Muffin Records</h3>
+            <th scope="col" class="govuk-table__header">File Name</th>
+            <!-- <th scope="col" class="govuk-table__header">Total files</th> -->
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -45,7 +50,7 @@
                   {{folder.name}}
                 </a>
               </th>
-              <td class="govuk-table__cell">{{ countFiles(folder) }}</td>
+              <!-- <td class="govuk-table__cell">{{ countFiles(folder) }}</td> -->
             </tr>
           {% endfor %}
           {% for fileId, file in contents.files %}
