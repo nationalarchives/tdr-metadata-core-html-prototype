@@ -13,7 +13,7 @@
         Edit metadata for file
       </h1>{{releaseVersion | log }}
       <p class="govuk-body">You can edit the metadata for a singular file here</p>
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
 
       <div class="govuk-breadcrumbs">
         <ol class="govuk-breadcrumbs__list">
@@ -53,12 +53,13 @@
         {% endfor %}
       </dl>
 
-      <a href="/add-field-to-file/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Add metadata field
-      </a>
 
       <a href="/browse/wildlife-reports" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
         Back to all folders
+      </a>
+
+      <a href="/add-field-to-file/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Add metadata field
       </a>
     </div>
   </div>
