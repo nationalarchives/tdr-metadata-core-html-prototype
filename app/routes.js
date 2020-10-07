@@ -1,3 +1,4 @@
+const { text } = require('body-parser')
 const express = require('express')
 const router = express.Router()
 
@@ -96,9 +97,9 @@ const allFiles = {
 }
 
 const allowedFields = {
-  dateCreated: { name: "Date created" },
-  dateRange: { name: "Date range" },
-  summary: { name: "Add a Summary" }
+  dateCreated: { name: "Date created", fieldType: "date" },
+  dateRange: { name: "Date range", fieldType: "daterange" },
+  summary: { name: "Add a Summary", fieldType: "text" }
 }
 
 const getFiles = (files, pathParts) => {
@@ -213,18 +214,22 @@ const getFolderMetadata = (fileIds, allFileMetadata) => {
 
 // Add your routes here - above the module.exports line
 
-router.get("/", function(req, res) {
+router.get('/', function (req, res) {
+  res.redirect("browse/wildlife-reports");
+})
+
+router.get("/summary", function (req, res) {
   const parentFolder = allFiles.folders[Object.keys(allFiles.folders)[0]]
   const totalFiles = countFiles(parentFolder);
   const parentFolderName = parentFolder.name;
 
-  res.render("index", {
+  res.render("summary", {
     totalFiles: totalFiles,
     parentFolderName: parentFolderName
   });
 });
 
-router.get('/browse/:path', function(req, res) {
+router.get('/browse/:path', function (req, res) {
   const pathParts = req.params.path.split("/");
   const files = getFiles(allFiles, pathParts);
 
@@ -244,7 +249,7 @@ router.get('/browse/:path', function(req, res) {
   });
 });
 
-router.get('/edit-folder/:path', function(req, res) {
+router.get('/edit-folder/:path', function (req, res) {
   const pathParts = req.params.path.split("/");
   const files = getFiles(allFiles, pathParts);
   const breadcrumbs = getBreadcrumbs([], allFiles, pathParts);
@@ -255,14 +260,14 @@ router.get('/edit-folder/:path', function(req, res) {
   res.render('edit-folder', {
     currentPath: pathParts,
     breadcrumbs: breadcrumbs,
-    contents : files,
+    contents: files,
     countFiles: countFiles,
     folderMetadata: folderMetadata,
     allowedFields: allowedFields
   });
 });
 
-router.get('/file-summary/:path', function(req, res) {
+router.get('/file-summary/:path', function (req, res) {
   const pathParts = req.params.path.split("/");
   const fileId = pathParts.slice(-1);
   const parentFolder = getFiles(allFiles, pathParts.slice(0, -1));
@@ -280,7 +285,7 @@ router.get('/file-summary/:path', function(req, res) {
   });
 });
 
-router.get('/add-field-to-folder/:path', function(req, res) {
+router.get('/add-field-to-folder/:path', function (req, res) {
   const pathParts = req.params.path.split("/");
   const files = getFiles(allFiles, pathParts);
   const breadcrumbs = getBreadcrumbs([], allFiles, pathParts);
@@ -288,13 +293,13 @@ router.get('/add-field-to-folder/:path', function(req, res) {
   res.render('add-field-to-folder', {
     currentPath: pathParts,
     breadcrumbs: breadcrumbs,
-    contents : files,
+    contents: files,
     countFiles: countFiles,
     allowedFields: allowedFields
   });
 });
 
-router.get('/add-field-to-file/:path', function(req, res) {
+router.get('/add-field-to-file/:path', function (req, res) {
   const pathParts = req.params.path.split("/");
   const fileId = pathParts.slice(-1);
   const breadcrumbs = getFileBreadcrumbs([], allFiles, pathParts);
@@ -309,21 +314,21 @@ router.get('/add-field-to-file/:path', function(req, res) {
   });
 });
 
-router.post('/add-field-to-folder/:path', function(req, res) {
+router.post('/add-field-to-folder/:path', function (req, res) {
   const fieldToAdd = req.session.data["choose-field"];
   const escapedPath = req.params.path.split("/").join("%2F");
 
   res.redirect(`/set-folder-field-value/${escapedPath}/${fieldToAdd}`);
 });
 
-router.post('/add-field-to-file/:path', function(req, res) {
+router.post('/add-field-to-file/:path', function (req, res) {
   const fieldToAdd = req.session.data["choose-field"];
   const escapedPath = req.params.path.split("/").join("%2F");
 
   res.redirect(`/set-file-field-value/${escapedPath}/${fieldToAdd}`);
 });
 
-router.get('/set-folder-field-value/:path/:fieldId', function(req, res) {
+router.get('/set-folder-field-value/:path/:fieldId', function (req, res) {
   const pathParts = req.params.path.split("/");
   const files = getFiles(allFiles, pathParts);
   const breadcrumbs = getBreadcrumbs([], allFiles, pathParts);
@@ -333,31 +338,44 @@ router.get('/set-folder-field-value/:path/:fieldId', function(req, res) {
     field: allowedFields[req.params.fieldId],
     currentPath: pathParts,
     breadcrumbs: breadcrumbs,
-    contents : files,
+    contents: files,
     countFiles: countFiles,
     allowedFields: allowedFields
   });
 });
 
-router.post('/set-folder-field-value/:path/:fieldId', function(req, res) {
+router.post('/set-folder-field-value/:path/:fieldId', function (req, res) {
   const pathParts = req.params.path.split("/");
   const folder = getFiles(allFiles, pathParts);
   const fileIds = getFilesInFolder(folder);
 
   const fieldId = req.params.fieldId;
-  const value = req.session.data["field-value"];
+
+  let textValue = req.session.data["field-value"];
+
+  let dateDayValue = req.session.data["date-day"];
+  let dateMonthValue = req.session.data["date-month"];
+  let dateYearValue = req.session.data["date-year"];
 
   req.session.data.fileMetadata = req.session.data.fileMetadata || {};
+
   fileIds.forEach(fileId => {
     req.session.data.fileMetadata[fileId] = req.session.data.fileMetadata[fileId] || {};
-    req.session.data.fileMetadata[fileId][fieldId] = value;
+
+    if (textValue) {
+      req.session.data.fileMetadata[fileId][fieldId] = textValue;
+    } else if (dateDayValue && dateMonthValue && dateYearValue) {
+      req.session.data.fileMetadata[fileId][fieldId] = dateDayValue + "/" + dateMonthValue + "/" + dateYearValue;
+    }
   });
+
+  req.session.data = { fileMetadata: req.session.data.fileMetadata } // Because the only thing to persist in the state is the file metadata information
 
   const escapedPath = req.params.path.split("/").join("%2F");
   res.redirect(`/edit-folder/${escapedPath}`);
 });
 
-router.get('/set-file-field-value/:path/:fieldId', function(req, res) {
+router.get('/set-file-field-value/:path/:fieldId', function (req, res) {
   const pathParts = req.params.path.split("/");
   const fileId = pathParts.slice(-1);
   const breadcrumbs = getFileBreadcrumbs([], allFiles, pathParts);
@@ -371,16 +389,29 @@ router.get('/set-file-field-value/:path/:fieldId', function(req, res) {
   });
 });
 
-router.post('/set-file-field-value/:path/:fieldId', function(req, res) {
+router.post('/set-file-field-value/:path/:fieldId', function (req, res) {
   const pathParts = req.params.path.split("/");
   const fileId = pathParts.slice(-1);
 
   const fieldId = req.params.fieldId;
-  const value = req.session.data["field-value"];
+
+  let textValue = req.session.data["field-value"];
+
+  let dateDayValue = req.session.data["date-day"];
+  let dateMonthValue = req.session.data["date-month"];
+  let dateYearValue = req.session.data["date-year"];
+
 
   req.session.data.fileMetadata = req.session.data.fileMetadata || {};
   req.session.data.fileMetadata[fileId] = req.session.data.fileMetadata[fileId] || {};
-  req.session.data.fileMetadata[fileId][fieldId] = value;
+
+  if (textValue) {
+    req.session.data.fileMetadata[fileId][fieldId] = textValue;
+  } else if (dateDayValue && dateMonthValue && dateYearValue) {
+    req.session.data.fileMetadata[fileId][fieldId] = dateDayValue + "/" + dateMonthValue + "/" + dateYearValue;
+  }
+
+  req.session.data = { fileMetadata: req.session.data.fileMetadata } // Because the only thing to persist in the state is the file metadata information
 
   const escapedPath = req.params.path.split("/").join("%2F");
   res.redirect(`/file-summary/${escapedPath}`);

@@ -33,18 +33,118 @@
         </strong>
       </div>
 
-      <form class="form" method="post">
+      <form class="form" method="post" onSubmitted={this.handleSubmitted}>
         <div class="govuk-form-group">
           <h1 class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--l" for="field-value">
               {{ field.name }}
             </label>
           </h1>
-          <input class="govuk-input" id="field-value" name="field-value" type="text">
-        </div>
+  
+          {% if field.fieldType == "date" %}
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hint">
+              <div class="govuk-date-input" id="date">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-day">
+                      Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-day" name="date-day"
+                      type="text" pattern="[0-9]*" inputmode="numeric"></div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-month">
+                      Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-month"
+                      name="date-month" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-year">
+                      Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-year" name="date-year"
+                      type="text" pattern="[0-9]*" inputmode="numeric"></div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          {% elseif field.fieldType == "text" %}
+  
+          <textarea class="govuk-textarea" id="field-value" name="field-value" rows="5" aria-describedby="more-detail-hint" type="text"></textarea>
 
+          {% elseif field.fieldType == "daterange" %}
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hint">
+              <div class="govuk-date-input" id="date">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-day">
+                      Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-day" name="date-day"
+                      type="text" pattern="[0-9]*" inputmode="numeric"></div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-month">
+                      Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-month"
+                      name="date-month" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-year">
+                      Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-year" name="date-year"
+                      type="text" pattern="[0-9]*" inputmode="numeric"></div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <p class="govuk-body-l">To</p>
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hint">
+              <div class="govuk-date-input" id="date">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-day">
+                      Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-day" name="date-day"
+                      type="text" pattern="[0-9]*" inputmode="numeric"></div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-month">
+                      Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-month"
+                      name="date-month" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-year">
+                      Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-year" name="date-year"
+                      type="text" pattern="[0-9]*" inputmode="numeric"></div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+  
+          {% endif %}
+        </div>
+  
         <button class="govuk-button" data-module="govuk-button">Save</button>
       </form>
+
     </div>
   </div>
 
