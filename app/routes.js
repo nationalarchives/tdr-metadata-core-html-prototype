@@ -351,21 +351,30 @@ router.post('/set-folder-field-value/:path/:fieldId', function (req, res) {
 
   const fieldId = req.params.fieldId;
 
-  let textValue = req.session.data["field-value"];
-
-  let dateDayValue = req.session.data["date-day"];
-  let dateMonthValue = req.session.data["date-month"];
-  let dateYearValue = req.session.data["date-year"];
-
   req.session.data.fileMetadata = req.session.data.fileMetadata || {};
 
   fileIds.forEach(fileId => {
     req.session.data.fileMetadata[fileId] = req.session.data.fileMetadata[fileId] || {};
 
-    if (textValue) {
+    if (fieldId == "summary") {
+      const textValue = req.session.data["field-value"];
       req.session.data.fileMetadata[fileId][fieldId] = textValue;
-    } else if (dateDayValue && dateMonthValue && dateYearValue) {
+    } else if (fieldId == "dateCreated") {
+      const dateDayValue = req.session.data["date-day"];
+      const dateMonthValue = req.session.data["date-month"];
+      const dateYearValue = req.session.data["date-year"];
       req.session.data.fileMetadata[fileId][fieldId] = dateDayValue + "/" + dateMonthValue + "/" + dateYearValue;
+    } else if (fieldId == "dateRange") {
+      const dateDayValue1 = req.session.data["date-day-1"];
+      const dateMonthValue1 = req.session.data["date-month-1"];
+      const dateYearValue1 = req.session.data["date-year-1"];
+
+      const dateDayValue2 = req.session.data["date-day-2"];
+      const dateMonthValue2 = req.session.data["date-month-2"];
+      const dateYearValue2 = req.session.data["date-year-2"];
+      const from = "From: " + dateDayValue1 + "/" + dateMonthValue1 + "/" + dateYearValue1;
+      const to = "To: " + dateDayValue2 + "/" + dateMonthValue2 + "/" + dateYearValue2;
+      req.session.data.fileMetadata[fileId][fieldId] = from + " - " + to;
     }
   });
 
@@ -395,20 +404,28 @@ router.post('/set-file-field-value/:path/:fieldId', function (req, res) {
 
   const fieldId = req.params.fieldId;
 
-  let textValue = req.session.data["field-value"];
-
-  let dateDayValue = req.session.data["date-day"];
-  let dateMonthValue = req.session.data["date-month"];
-  let dateYearValue = req.session.data["date-year"];
-
-
   req.session.data.fileMetadata = req.session.data.fileMetadata || {};
   req.session.data.fileMetadata[fileId] = req.session.data.fileMetadata[fileId] || {};
 
-  if (textValue) {
+  if (fieldId == "summary") {
+    const textValue = req.session.data["field-value"];
     req.session.data.fileMetadata[fileId][fieldId] = textValue;
-  } else if (dateDayValue && dateMonthValue && dateYearValue) {
+  } else if (fieldId == "dateCreated") {
+    const dateDayValue = req.session.data["date-day"];
+    const dateMonthValue = req.session.data["date-month"];
+    const dateYearValue = req.session.data["date-year"];
     req.session.data.fileMetadata[fileId][fieldId] = dateDayValue + "/" + dateMonthValue + "/" + dateYearValue;
+  } else if (fieldId == "dateRange") {
+    const dateDayValue1 = req.session.data["date-day-1"];
+    const dateMonthValue1 = req.session.data["date-month-1"];
+    const dateYearValue1 = req.session.data["date-year-1"];
+
+    const dateDayValue2 = req.session.data["date-day-2"];
+    const dateMonthValue2 = req.session.data["date-month-2"];
+    const dateYearValue2 = req.session.data["date-year-2"];
+    const from = "From: " + dateDayValue1 + "/" + dateMonthValue1 + "/" + dateYearValue1;
+    const to = "To: " + dateDayValue2 + "/" + dateMonthValue2 + "/" + dateYearValue2;
+    req.session.data.fileMetadata[fileId][fieldId] = from + " - " + to;
   }
 
   req.session.data = { fileMetadata: req.session.data.fileMetadata } // Because the only thing to persist in the state is the file metadata information
