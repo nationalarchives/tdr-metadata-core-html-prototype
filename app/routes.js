@@ -19,10 +19,22 @@ const allFiles = {
                   files: {
                     "goose-annual-supplement-1": {
                       name: "Appendix 1.txt",
+                      language: "English",
+                      copyright:"Crown Copyright",
+                      status: "Public Record",
+                      filepath:"/home/admin/transfers",
+                      datelast: "25/05/2020",
+                      checksum:"SHA256",
                       icon: "🧾"
                     },
                     "goose-annual-supplement-2": {
                       name: "Appendix 2.txt",
+                      language: "English",
+                      copyright:"Crown Copyright",
+                      status: "Public Record",
+                      filepath:"/home/admin/transfers",
+                      datelast: "25/05/2020",
+                      checksum:"SHA256",
                       icon: "🧾"
                     }
                   }
@@ -31,26 +43,62 @@ const allFiles = {
               files: {
                 "goose-2005": {
                   name: "Muffins Sold 2005.docx",
+                  language: "English",
+                  copyright:"Crown Copyright",
+                  status: "Public Record",
+                  filepath:"/home/admin/transfers",
+                  datelast: "25/05/2020",
+                  checksum:"SHA256",
                   icon: "🧾"
                 },
                 "goose-2006": {
                   name: "Muffins Sold 2006.docx",
+                  language: "English",
+                  copyright:"Crown Copyright",
+                  status: "Public Record",
+                  filepath:"/home/admin/transfers",
+                  datelast: "25/05/2020",
+                  checksum:"SHA256",
                   icon: "🧾"
                 },
                 "goose-2007": {
                   name: "Muffins Sold 2007.docx",
+                  language: "English",
+                  copyright:"Crown Copyright",
+                  status: "Public Record",
+                  filepath:"/home/admin/transfers",
+                  datelast: "25/05/2020",
+                  checksum:"SHA256",
                   icon: "🧾"
                 },
                 "goose-2008": {
                   name: "Muffins Sold 2008.docx",
+                  language: "English",
+                  copyright:"Crown Copyright",
+                  status: "Public Record",
+                  filepath:"/home/admin/transfers",
+                  datelast: "25/05/2020",
+                  checksum:"SHA256",
                   icon: "🧾"
                 },
                 "goose-2009": {
                   name: "Muffins Sold 2009.docx",
+                  language: "English",
+                  copyright:"Crown Copyright",
+                  status: "Public Record",
+                  filepath:"/home/admin/transfers",
+                  datelast: "25/05/2020",
+                  checksum:"SHA256",
                   icon: "🧾"
                 },
                 "goose-2010": {
                   name: "Muffins Sold 2010.docx",
+                  language: "English",
+                  copyright:"Crown Copyright",
+                  status: "Public Record",
+                  filepath:"/home/admin/transfers",
+                  datelast: "25/05/2020",
+                  checksum:"SHA256",
                   icon: "🧾"
                 },
               }
@@ -59,6 +107,12 @@ const allFiles = {
           files: {
             "goose-photo": {
               name: "Muffin Photo.png",
+              language: "English",
+              copyright:"Crown Copyright",
+              status: "Public Record",
+              filepath:"/home/admin/transfers",
+              datelast: "25/05/2020",
+              checksum:"SHA256",
               icon: "🖼️"
             }
           }
@@ -69,10 +123,22 @@ const allFiles = {
           files: {
             "heron-photo": {
               name: "Chocolate Chip Photo.png",
+              language: "English",
+              copyright:"Crown Copyright",
+              status: "Public Record",
+              filepath:"/home/admin/transfers",
+              datelast: "25/05/2020",
+              checksum:"SHA256",
               icon: "🖼️"
             },
             "heron-with-fish": {
               name: "Apple-Cinnamon Photo.jpg",
+              language: "English",
+              copyright:"Crown Copyright",
+              status: "Public Record",
+              filepath:"/home/admin/transfers",
+              datelast: "25/05/2020",
+              checksum:"SHA256",
               icon: "🖼️"
             }
           }
@@ -81,14 +147,32 @@ const allFiles = {
       files: {
         "annual-report": {
           name: "Annual report.docx",
+          language: "English",
+          copyright:"Crown Copyright",
+          status: "Public Record",
+          filepath:"/home/admin/transfers",
+          datelast: "25/05/2020",
+          checksum:"SHA256",
           icon: "🧾"
         },
         "stats": {
           name: "Statistics.xlsx",
+          language: "English",
+          copyright:"Crown Copyright",
+          status: "Public Record",
+          filepath:"/home/admin/transfers",
+          datelast: "25/05/2020",
+          checksum:"SHA256",
           icon: "📊"
         },
         "wildlife-photo": {
           name: "Banana Muffins Photo.jpg",
+          language: "English",
+          copyright:"Crown Copyright",
+          status: "Public Record",
+          filepath:"/home/admin/transfers",
+          datelast: "25/05/2020",
+          checksum:"SHA256",
           icon: "🖼️"
         },
       }

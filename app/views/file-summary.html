@@ -13,7 +13,9 @@
         Edit metadata for file
       </h1>{{releaseVersion | log }}
       <p class="govuk-body">Edit the metadata details for a singular file here</p>
-
+      <a href="/add-field-to-file/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Add metadata field
+      </a>
 
       <div class="govuk-breadcrumbs">
         <ol class="govuk-breadcrumbs__list">
@@ -32,6 +34,66 @@
           </dt>
           <dd class="govuk-summary-list__value">
             {{ fileDetails.name }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Language
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ fileDetails.language }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Rights Copyright
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ fileDetails.copyright }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Legal Status
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ fileDetails.status }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            File Path
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ fileDetails.filepath }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date Last Modified
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ fileDetails.datelast }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Checksum
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ fileDetails.checksum }}
           </dd>
           <dd class="govuk-summary-list__actions">
           </dd>
@@ -58,9 +120,11 @@
         Back to all folders
       </a>
 
-      <a href="/add-field-to-file/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Add metadata field
+      <a href="/summary" aria-label="Continue" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Continue with transfer
       </a>
+
+
     </div>
   </div>
 

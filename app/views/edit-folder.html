@@ -13,6 +13,9 @@
         Edit metadata for all files folder
       </h1>{{releaseVersion | log }}
       <p class="govuk-body">You can edit the metadata for multiple files here</p>
+      <a href="/add-field-to-folder/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Add metadata field
+      </a>
 
       <div class="govuk-breadcrumbs">
         <ol class="govuk-breadcrumbs__list">
@@ -66,8 +69,8 @@
         Back to all folders
       </a>
       
-      <a href="/add-field-to-folder/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Add metadata field
+      <a href="/summary" aria-label="Continue" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Continue with transfer
       </a>
       
 
