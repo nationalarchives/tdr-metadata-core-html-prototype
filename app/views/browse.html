@@ -13,10 +13,9 @@
       </h1>{{releaseVersion | log }}
       <p class="govuk-body">If you would like to add further description to your transfer you can do so here, otherwise you can continue with your transfer.</p>
       <p class="govuk-body">Add metadata for all files in folder or alternatively select individual files. </p>
-      <a href="/edit-folder/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Add metadata for all files in folder
+      <a href="/" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Back to Dashboard
       </a>
-
       <a href="/confirm" aria-label="Continue" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
         Continue with transfer
       </a>
@@ -36,8 +35,8 @@
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <h3 class="govuk-heading-m">📁 My Muffin Records</h3>
-            <th scope="col" class="govuk-table__header">File Name</th>
+            <h3 class="govuk-heading-m">Folder Uploaded: My Muffin Records</h3>
+            <th scope="col" class="govuk-table__header">File & Folder Name</th>
             <!-- <th scope="col" class="govuk-table__header">Total files</th> -->
           </tr>
         </thead>
@@ -66,6 +65,9 @@
           {% endfor %}
         </tbody>
       </table>
+      <a href="/edit-folder/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Add metadata for all files in folder
+      </a>
     </div>
   </div>
 
