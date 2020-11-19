@@ -1,132 +1,133 @@
-
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  GOV.UK Prototype Kit
+GOV.UK Prototype Kit
 {% endblock %}
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">
-        Edit metadata for a single file
-      </h1>{{releaseVersion | log }}
-      <p class="govuk-body">Edit the metadata details for a singular file here, otherwise click continue to complete your transfer.</p>
-      <a href="/browse/wildlife-reports" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-        Back to all folders
-      </a>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+      Edit metadata for a single file
+    </h1>{{releaseVersion | log }}
+    <p class="govuk-body">Edit the metadata details for a singular file here, otherwise click continue to complete your
+      transfer.</p>
+    <a href="/browse/wildlife-reports" role="button" draggable="false" class="govuk-button govuk-button--secondary"
+      data-module="govuk-button">
+      Back to all folders
+    </a>
 
-      <a href="/confirm" aria-label="Continue" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Continue with transfer
-      </a>
+    <a href="/confirm" aria-label="Continue" role="button" draggable="false" class="govuk-button"
+      data-module="govuk-button">
+      Continue with transfer
+    </a>
 
-      <div class="govuk-breadcrumbs">
-        <ol class="govuk-breadcrumbs__list">
-          {% for breadcrumb in breadcrumbs %}
-            <li class="govuk-breadcrumbs__list-item">
-              <a class="govuk-breadcrumbs__link" href="/browse/{{breadcrumb.path}}">{{breadcrumb.name}}</a>
-            </li>
-          {% endfor %}
-        </ol>
+    <h1 class="govuk-heading-m">
+      {% for folder in breadcrumbs %}
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="/browse/{{folder.path}}">{{folder.name}}</a>
+      </li>
+      {% endfor %}
+    </h1>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Name
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ fileDetails.name }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+        </dd>
       </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Language
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ fileDetails.language }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Rights Copyright
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ fileDetails.copyright }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Legal Status
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ fileDetails.status }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          File Path
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ fileDetails.filepath }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Date Last Modified
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ fileDetails.datelast }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Checksum
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ fileDetails.checksum }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+        </dd>
+      </div>
+      {% for fieldId, metadataSummary in fileMetadata %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          {{ allowedFields[fieldId].name }}
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ metadataSummary }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a href="/set-folder-field-value/{{ currentPath.join('%2F') }}/{{ fieldId }}">
+            Edit
+          </a>
+          <br>
+          <a href="/set-folder-field-value/{{ currentPath.join('%2F') }}/{{ fieldId }}">
+            Delete
+          </a>
+        </dd>
+      </div>
+      {% endfor %}
+    </dl>
 
-      <dl class="govuk-summary-list">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Name
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ fileDetails.name }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Language
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ fileDetails.language }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Rights Copyright
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ fileDetails.copyright }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Legal Status
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ fileDetails.status }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            File Path
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ fileDetails.filepath }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Date Last Modified
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ fileDetails.datelast }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Checksum
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ fileDetails.checksum }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-          </dd>
-        </div>
-        {% for fieldId, metadataSummary in fileMetadata %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              {{ allowedFields[fieldId].name }}
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ metadataSummary }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a href="/set-folder-field-value/{{ currentPath.join('%2F') }}/{{ fieldId }}">
-                Edit
-              </a>
-              <br>
-              <a href="/set-folder-field-value/{{ currentPath.join('%2F') }}/{{ fieldId }}">
-                Delete
-              </a>
-            </dd>
-          </div>
-        {% endfor %}
-      </dl>
-
-      <a href="/add-field-to-file/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Add metadata field
-      </a>
-    </div>
+    <a href="/add-field-to-file/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button"
+      data-module="govuk-button">
+      Add metadata field
+    </a>
   </div>
+</div>
 
 {% endblock %}

@@ -1,74 +1,69 @@
-
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  GOV.UK Prototype Kit
+GOV.UK Prototype Kit
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">
-        Edit metadata
-      </h1>{{releaseVersion | log }}
-      <p class="govuk-body">If you would like to add further description to your transfer you can do so here, otherwise you can continue with your transfer.</p>
-      <p class="govuk-body">Add metadata for all files in folder or alternatively select individual files. </p>
-      <a href="/" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-        Back to Dashboard
-      </a>
-      <a href="/confirm" aria-label="Continue" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Continue with transfer
-      </a>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+      Edit metadata
+    </h1>{{releaseVersion | log }}
+    <p class="govuk-body">If you would like to add further description to your transfer you can do so here, otherwise
+      you can continue with your transfer.</p>
+    <p class="govuk-body">Add metadata for all files in folder or alternatively select individual files. </p>
+    <a href="/" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Back to Dashboard
+    </a>
+    <a href="/confirm" aria-label="Continue" role="button" draggable="false" class="govuk-button"
+      data-module="govuk-button">
+      Continue with transfer
+    </a>
 
-
-
-      <div class="govuk-breadcrumbs">
-        <ol class="govuk-breadcrumbs__list">
-          {% for folder in breadcrumbs %}
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <h1 class="govuk-heading-m">
+            {% for folder in breadcrumbs %}
             <li class="govuk-breadcrumbs__list-item">
               <a class="govuk-breadcrumbs__link" href="/browse/{{folder.path}}">{{folder.name}}</a>
             </li>
-          {% endfor %}
-        </ol>
-      </div>
-
-      <table class="govuk-table">
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <h3 class="govuk-heading-m">Folder Uploaded: My Muffin Records</h3>
-            <th scope="col" class="govuk-table__header">Sub Folder & File Name</th>
-            <!-- <th scope="col" class="govuk-table__header">Total files</th> -->
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-          {% for folderId, folder in contents.folders %}
-            <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__header">
-                📁
-                <a href="/browse/{{ currentPath.concat(folderId).join('%2F') }}">
-                  {{folder.name}}
-                </a>
-              </th>
-              <!-- <td class="govuk-table__cell">{{ countFiles(folder) }}</td> -->
-            </tr>
-          {% endfor %}
-          {% for fileId, file in contents.files %}
-            <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__header">
-                {{file.icon}}
-                <a href="/file-summary/{{ currentPath.concat(fileId).join('%2F') }}">
-                  {{file.name}}
-                </a>
-              </th>
-              <td class="govuk-table__cell"></td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      <a href="/edit-folder/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Add metadata for all files in folder
-      </a>
-    </div>
+            {% endfor %}
+          </h1>
+          <!-- <th scope="col" class="govuk-table__header">Total files</th> -->
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for folderId, folder in contents.folders %}
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">
+            📁
+            <a href="/browse/{{ currentPath.concat(folderId).join('%2F') }}">
+              {{folder.name}}
+            </a>
+          </th>
+          <!-- <td class="govuk-table__cell">{{ countFiles(folder) }}</td> -->
+        </tr>
+        {% endfor %}
+        {% for fileId, file in contents.files %}
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">
+            {{file.icon}}
+            <a href="/file-summary/{{ currentPath.concat(fileId).join('%2F') }}">
+              {{file.name}}
+            </a>
+          </th>
+          <td class="govuk-table__cell"></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="/edit-folder/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button"
+      data-module="govuk-button">
+      Add metadata for all files in folder
+    </a>
   </div>
+</div>
 
 {% endblock %}
