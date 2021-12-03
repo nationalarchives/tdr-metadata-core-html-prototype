@@ -10,9 +10,9 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        Add metadata field
+        Add closure field
       </h1>{{releaseVersion | log }}
-      <p class="govuk-body">Choose which fields you would like to add.</p>
+      <p class="govuk-body">Choose which closure fields you would like to add.</p>
 
       <div class="govuk-warning-text">
         <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
@@ -27,11 +27,11 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-              {% for fieldId, field in allowedFields %}
+              {% for closureFieldId, closureField in allowedClosureFields %}
               <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="choose-field-{{ fieldId }}" name="choose-field" type="checkbox" value="{{ fieldId }}">
-                <label class="govuk-label govuk-checkboxes__label" for="choose-field-{{ fieldId }}">
-                  {{ field.name }}
+                <input class="govuk-checkboxes__input" id="choose-closure-field-{{ closureFieldId }}" name="choose-closure-field" type="checkbox" value="{{ closureFieldId }}">
+                <label class="govuk-label govuk-checkboxes__label" for="choose-closure-field-{{ closureFieldId }}">
+                  {{ closureField.name }}
                 </label>
               </div>
               {% endfor %}

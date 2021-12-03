@@ -4,20 +4,20 @@ const router = express.Router()
 
 const allFiles = {
   folders: {
-    "wildlife-reports": {
-      name: "My Muffin Records",
+    "test-reports": {
+      name: "test records",
       folders: {
-        "goose-reports": {
-          name: "Ingredients Reports",
+        "test-2-reports": {
+          name: "test reports",
           folders: {
-            "goose-annual": {
-              name: "Annual reports",
+            "test-annual": {
+              name: "annual test reports",
               folders: {
-                "goose-annual-supplements": {
-                  name: "Supplementary information",
+                "test-annual-supplements": {
+                  name: "test supplementary information",
                   folders: {},
                   files: {
-                    "goose-annual-supplement-1": {
+                    "test-annual-supplement-1": {
                       name: "Appendix 1.txt",
                       language: "English",
                       copyright:"Crown Copyright",
@@ -27,7 +27,7 @@ const allFiles = {
                       checksum:"SHA256",
                       icon: "🧾"
                     },
-                    "goose-annual-supplement-2": {
+                    "test-annual-supplement-2": {
                       name: "Appendix 2.txt",
                       language: "English",
                       copyright:"Crown Copyright",
@@ -41,8 +41,8 @@ const allFiles = {
                 }
               },
               files: {
-                "goose-2005": {
-                  name: "Muffins Sold 2005.docx",
+                "test-2005": {
+                  name: "test report 2005.docx",
                   language: "English",
                   copyright:"Crown Copyright",
                   status: "Public Record",
@@ -51,8 +51,8 @@ const allFiles = {
                   checksum:"SHA256",
                   icon: "🧾"
                 },
-                "goose-2006": {
-                  name: "Muffins Sold 2006.docx",
+                "test-2006": {
+                  name: "test report 2006.docx",
                   language: "English",
                   copyright:"Crown Copyright",
                   status: "Public Record",
@@ -61,8 +61,8 @@ const allFiles = {
                   checksum:"SHA256",
                   icon: "🧾"
                 },
-                "goose-2007": {
-                  name: "Muffins Sold 2007.docx",
+                "test-2007": {
+                  name: "test report 2007.docx",
                   language: "English",
                   copyright:"Crown Copyright",
                   status: "Public Record",
@@ -71,8 +71,8 @@ const allFiles = {
                   checksum:"SHA256",
                   icon: "🧾"
                 },
-                "goose-2008": {
-                  name: "Muffins Sold 2008.docx",
+                "test-2008": {
+                  name: "test report 2008.docx",
                   language: "English",
                   copyright:"Crown Copyright",
                   status: "Public Record",
@@ -81,8 +81,8 @@ const allFiles = {
                   checksum:"SHA256",
                   icon: "🧾"
                 },
-                "goose-2009": {
-                  name: "Muffins Sold 2009.docx",
+                "test-2009": {
+                  name: "test report 2009.docx",
                   language: "English",
                   copyright:"Crown Copyright",
                   status: "Public Record",
@@ -91,8 +91,8 @@ const allFiles = {
                   checksum:"SHA256",
                   icon: "🧾"
                 },
-                "goose-2010": {
-                  name: "Muffins Sold 2010.docx",
+                "test-2010": {
+                  name: "test report 2010.docx",
                   language: "English",
                   copyright:"Crown Copyright",
                   status: "Public Record",
@@ -105,8 +105,8 @@ const allFiles = {
             }
           },
           files: {
-            "goose-photo": {
-              name: "Muffin Photo.png",
+            "test-photo": {
+              name: "test photo.png",
               language: "English",
               copyright:"Crown Copyright",
               status: "Public Record",
@@ -117,12 +117,12 @@ const allFiles = {
             }
           }
         },
-        "heron-reports": {
-          name: "Muffin Reports",
+        "test-reports": {
+          name: "test reports",
           folders: {},
           files: {
-            "heron-photo": {
-              name: "Chocolate Chip Photo.png",
+            "test-photo": {
+              name: "test test test photo.png",
               language: "English",
               copyright:"Crown Copyright",
               status: "Public Record",
@@ -131,8 +131,8 @@ const allFiles = {
               checksum:"SHA256",
               icon: "🖼️"
             },
-            "heron-with-fish": {
-              name: "Apple-Cinnamon Photo.jpg",
+            "test-with-test": {
+              name: "test with test photo.jpg",
               language: "English",
               copyright:"Crown Copyright",
               status: "Public Record",
@@ -165,8 +165,8 @@ const allFiles = {
           checksum:"SHA256",
           icon: "📊"
         },
-        "wildlife-photo": {
-          name: "Banana Muffins Photo.jpg",
+        "test click photo": {
+          name: "test click photo.jpg",
           language: "English",
           copyright:"Crown Copyright",
           status: "Public Record",
@@ -180,10 +180,25 @@ const allFiles = {
   }
 }
 
+const prepopFields = {
+  language: { name: "Language", fieldType: "radio"},
+  legalStatus: { name: "Legal status", fieldType: "radio"},
+  copyright: { name: "Copyright", fieldType: "radio"}
+}
+
 const allowedFields = {
-  dateCreated: { name: "Date created", fieldType: "date" },
+  dateCreated: { name: "Original creation date", fieldType: "date" },
   dateRange: { name: "Date range", fieldType: "daterange" },
-  summary: { name: "Add a Summary", fieldType: "text" }
+  creatingBody: { name: "Creating body", fieldType: "input" },
+  summary: { name: "Summary", fieldType: "text" }
+}
+
+const allowedClosureFields = {
+  closureType: { name: "Closure type", fieldType: "input" },
+  closurePeriod: { name: "Closure period", fieldType: "daterange" },
+  closureStartDate: { name: "Closure start date", fieldType: "date" },
+  FOIexemptionCode: { name: "FOI exemption code", fieldType: "input" },
+  descriptionPublic: { name: "Description public", fieldType: "text"}
 }
 
 const getFiles = (files, pathParts) => {
@@ -296,10 +311,45 @@ const getFolderMetadata = (fileIds, allFileMetadata) => {
   return filteredMetadata;
 }
 
+const getFolderClosureMetadata = (fileIds, allFileMetadata) => {
+  const folderClosureMetadata = {};
+
+  Object.keys(allowedClosureFields).forEach(closureFieldId => {
+    const closureFieldValues = [];
+
+    fileIds.forEach(fileId => {
+      const fileMetadata = allFileMetadata[fileId] || {};
+      const metadataValue = fileMetadata[closureFieldId] || null;
+
+      if (!closureFieldValues.includes(metadataValue)) {
+        closureFieldValues.push(metadataValue);
+      }
+    });
+
+    folderClosureMetadata[closureFieldId] = closureFieldValues;
+  });
+
+  const filteredClosureMetadata = {};
+
+  Object.keys(folderClosureMetadata).forEach(closureFieldId => {
+    const metadataForField = folderClosureMetadata[closureFieldId];
+
+    if (metadataForField.length === 1) {
+      if (metadataForField[0] !== null) {
+        filteredClosureMetadata[closureFieldId] = metadataForField[0]
+      }
+    } else {
+      filteredClosureMetadata[closureFieldId] = "Varies by file";
+    }
+  });
+
+  return filteredClosureMetadata;
+}
+
 // Add your routes here - above the module.exports line
 
 router.get('/', function (req, res) {
-  res.redirect("browse/wildlife-reports");
+  res.redirect("home-metadata/test-reports");
 })
 
 router.get("/summary", function (req, res) {
@@ -310,6 +360,26 @@ router.get("/summary", function (req, res) {
   res.render("summary", {
     totalFiles: totalFiles,
     parentFolderName: parentFolderName
+  });
+});
+
+router.get('/home-metadata/:path', function (req, res) {
+  const pathParts = req.params.path.split("/");
+  const files = getFiles(allFiles, pathParts);
+
+  if (!files) {
+    // Assume this is is not a folder, so redirect to the files page
+    res.redirect(`/file-summary/${pathParts.join("%2F")}`);
+  }
+  console.log("Files:", files);
+
+  const breadcrumbs = getBreadcrumbs([], allFiles, pathParts);
+
+  res.render('home-metadata', {
+    currentPath: pathParts,
+    breadcrumbs: breadcrumbs,
+    contents: files,
+    countFiles: countFiles
   });
 });
 
@@ -340,6 +410,7 @@ router.get('/edit-folder/:path', function (req, res) {
 
   const fileIds = getFilesInFolder(files);
   const folderMetadata = getFolderMetadata(fileIds, req.session.data.fileMetadata || {});
+  const folderClosureMetadata = getFolderClosureMetadata(fileIds, req.session.data.fileMetadata || {});
 
   res.render('edit-folder', {
     currentPath: pathParts,
@@ -347,7 +418,9 @@ router.get('/edit-folder/:path', function (req, res) {
     contents: files,
     countFiles: countFiles,
     folderMetadata: folderMetadata,
-    allowedFields: allowedFields
+    folderClosureMetadata: folderClosureMetadata,
+    allowedFields: allowedFields,
+    allowedClosureFields: allowedClosureFields
   });
 });
 
@@ -365,7 +438,8 @@ router.get('/file-summary/:path', function (req, res) {
     breadcrumbs: breadcrumbs,
     fileDetails: fileDetails,
     fileMetadata: fileMetadata,
-    allowedFields: allowedFields
+    allowedFields: allowedFields,
+    allowedClosureFields: allowedClosureFields
   });
 });
 
@@ -380,6 +454,20 @@ router.get('/add-field-to-folder/:path', function (req, res) {
     contents: files,
     countFiles: countFiles,
     allowedFields: allowedFields
+  });
+});
+
+router.get('/add-closure-field-to-folder/:path', function (req, res) {
+  const pathParts = req.params.path.split("/");
+  const files = getFiles(allFiles, pathParts);
+  const breadcrumbs = getBreadcrumbs([], allFiles, pathParts);
+
+  res.render('add-closure-field-to-folder', {
+    currentPath: pathParts,
+    breadcrumbs: breadcrumbs,
+    contents: files,
+    countFiles: countFiles,
+    allowedClosureFields: allowedClosureFields
   });
 });
 
@@ -398,6 +486,21 @@ router.get('/add-field-to-file/:path', function (req, res) {
   });
 });
 
+router.get('/add-closure-field-to-file/:path', function (req, res) {
+  const pathParts = req.params.path.split("/");
+  const fileId = pathParts.slice(-1);
+  const breadcrumbs = getFileBreadcrumbs([], allFiles, pathParts);
+  const parentFolder = getFiles(allFiles, pathParts.slice(0, -1));
+  const fileDetails = parentFolder.files[fileId];
+
+  res.render('add-closure-field-to-file', {
+    currentPath: pathParts,
+    breadcrumbs: breadcrumbs,
+    fileDetails: fileDetails,
+    allowedClosureFields: allowedClosureFields
+  });
+});
+
 router.post('/add-field-to-folder/:path', function (req, res) {
   const fieldToAdd = req.session.data["choose-field"];
   const escapedPath = req.params.path.split("/").join("%2F");
@@ -405,11 +508,25 @@ router.post('/add-field-to-folder/:path', function (req, res) {
   res.redirect(`/set-folder-field-value/${escapedPath}/${fieldToAdd}`);
 });
 
+router.post('/add-closure-field-to-folder/:path', function (req, res) {
+  const closureFieldToAdd = req.session.data["choose-closure-field"];
+  const escapedPath = req.params.path.split("/").join("%2F");
+
+  res.redirect(`/set-folder-closure-field-value/${escapedPath}/${closureFieldToAdd}`);
+});
+
 router.post('/add-field-to-file/:path', function (req, res) {
   const fieldToAdd = req.session.data["choose-field"];
   const escapedPath = req.params.path.split("/").join("%2F");
 
   res.redirect(`/set-file-field-value/${escapedPath}/${fieldToAdd}`);
+});
+
+router.post('/add-closure-field-to-file/:path', function (req, res) {
+  const fieldToAdd = req.session.data["choose-closure-field"];
+  const escapedPath = req.params.path.split("/").join("%2F");
+
+  res.redirect(`/set-file-closure-field-value/${escapedPath}/${fieldToAdd}`);
 });
 
 router.get('/set-folder-field-value/:path/:fieldId', function (req, res) {
@@ -428,6 +545,22 @@ router.get('/set-folder-field-value/:path/:fieldId', function (req, res) {
   });
 });
 
+router.get('/set-folder-closure-field-value/:path/:closureFieldId', function (req, res) {
+  const pathParts = req.params.path.split("/");
+  const files = getFiles(allFiles, pathParts);
+  const breadcrumbs = getBreadcrumbs([], allFiles, pathParts);
+
+  res.render('set-folder-closure-field-value', {
+    closureFieldId: req.params.closureFieldId,
+    closureField: allowedClosureFields[req.params.closureFieldId],
+    currentPath: pathParts,
+    breadcrumbs: breadcrumbs,
+    contents: files,
+    countFiles: countFiles,
+    allowedClosureFields: allowedClosureFields
+  });
+});
+
 router.post('/set-folder-field-value/:path/:fieldId', function (req, res) {
   const pathParts = req.params.path.split("/");
   const folder = getFiles(allFiles, pathParts);
@@ -443,6 +576,9 @@ router.post('/set-folder-field-value/:path/:fieldId', function (req, res) {
     if (fieldId == "summary") {
       const textValue = req.session.data["field-value"];
       req.session.data.fileMetadata[fileId][fieldId] = textValue;
+    } else if (fieldId == "creatingBody") {
+      const inputValue = req.session.data["field-input"];
+      req.session.data.fileMetadata[fileId][fieldId] = inputValue;
     } else if (fieldId == "dateCreated") {
       const dateDayValue = req.session.data["date-day"];
       const dateMonthValue = req.session.data["date-month"];
@@ -468,6 +604,52 @@ router.post('/set-folder-field-value/:path/:fieldId', function (req, res) {
   res.redirect(`/edit-folder/${escapedPath}`);
 });
 
+router.post('/set-folder-closure-field-value/:path/:closureFieldId', function (req, res) {
+  const pathParts = req.params.path.split("/");
+  const folder = getFiles(allFiles, pathParts);
+  const fileIds = getFilesInFolder(folder);
+
+  const closureFieldId = req.params.closureFieldId;
+
+  req.session.data.fileMetadata = req.session.data.fileMetadata || {};
+
+  fileIds.forEach(fileId => {
+    req.session.data.fileMetadata[fileId] = req.session.data.fileMetadata[fileId] || {};
+
+    if (closureFieldId == "descriptionPublic") {
+      const textValue = req.session.data["description-value"];
+      req.session.data.fileMetadata[fileId][closureFieldId] = textValue;
+    } else if (closureFieldId == "FOIexemptionCode") {
+      const inputValue = req.session.data["input-field"];
+      req.session.data.fileMetadata[fileId][closureFieldId] = inputValue;
+    } else if (closureFieldId == "closureStartDate") {
+      const dateDayValue = req.session.data["date-day"];
+      const dateMonthValue = req.session.data["date-month"];
+      const dateYearValue = req.session.data["date-year"];
+      req.session.data.fileMetadata[fileId][closureFieldId] = dateDayValue + "/" + dateMonthValue + "/" + dateYearValue;
+    } else if (closureFieldId == "closurePeriod") {
+      const dateDayValue1 = req.session.data["date-day-1"];
+      const dateMonthValue1 = req.session.data["date-month-1"];
+      const dateYearValue1 = req.session.data["date-year-1"];
+
+      const dateDayValue2 = req.session.data["date-day-2"];
+      const dateMonthValue2 = req.session.data["date-month-2"];
+      const dateYearValue2 = req.session.data["date-year-2"];
+      const from = "From: " + dateDayValue1 + "/" + dateMonthValue1 + "/" + dateYearValue1;
+      const to = "To: " + dateDayValue2 + "/" + dateMonthValue2 + "/" + dateYearValue2;
+      req.session.data.fileMetadata[fileId][closureFieldId] = from + " - " + to;
+    } else if (closureFieldId == "closureType") {
+      const inputValue = req.session.data["input-field"];
+      req.session.data.fileMetadata[fileId][closureFieldId] = inputValue;
+    }
+  });
+
+  req.session.data = { fileMetadata: req.session.data.fileMetadata } // Because the only thing to persist in the state is the file metadata information
+
+  const escapedPath = req.params.path.split("/").join("%2F");
+  res.redirect(`/edit-folder/${escapedPath}`);
+});
+
 router.get('/set-file-field-value/:path/:fieldId', function (req, res) {
   const pathParts = req.params.path.split("/");
   const fileId = pathParts.slice(-1);
@@ -479,6 +661,20 @@ router.get('/set-file-field-value/:path/:fieldId', function (req, res) {
     currentPath: pathParts,
     breadcrumbs: breadcrumbs,
     allowedFields: allowedFields
+  });
+});
+
+router.get('/set-file-closure-field-value/:path/:closureFieldId', function (req, res) {
+  const pathParts = req.params.path.split("/");
+  const fileId = pathParts.slice(-1);
+  const breadcrumbs = getFileBreadcrumbs([], allFiles, pathParts);
+
+  res.render('set-file-closure-field-value', {
+    closureFieldId: req.params.closureFieldId,
+    closureField: allowedClosureFields[req.params.closureFieldId],
+    currentPath: pathParts,
+    breadcrumbs: breadcrumbs,
+    allowedClosureFields: allowedClosureFields
   });
 });
 
@@ -494,6 +690,9 @@ router.post('/set-file-field-value/:path/:fieldId', function (req, res) {
   if (fieldId == "summary") {
     const textValue = req.session.data["field-value"];
     req.session.data.fileMetadata[fileId][fieldId] = textValue;
+  } else if (fieldId == "creatingBody") {
+    const inputValue = req.session.data["field-input"];
+    req.session.data.fileMetadata[fileId][fieldId] = inputValue;
   } else if (fieldId == "dateCreated") {
     const dateDayValue = req.session.data["date-day"];
     const dateMonthValue = req.session.data["date-month"];
@@ -511,6 +710,48 @@ router.post('/set-file-field-value/:path/:fieldId', function (req, res) {
     const to = "To: " + dateDayValue2 + "/" + dateMonthValue2 + "/" + dateYearValue2;
     req.session.data.fileMetadata[fileId][fieldId] = from + " - " + to;
   }
+
+  req.session.data = { fileMetadata: req.session.data.fileMetadata } // Because the only thing to persist in the state is the file metadata information
+
+  const escapedPath = req.params.path.split("/").join("%2F");
+  res.redirect(`/file-summary/${escapedPath}`);
+});
+
+router.post('/set-file-closure-field-value/:path/:closureFieldId', function (req, res) {
+  const pathParts = req.params.path.split("/");
+  const fileId = pathParts.slice(-1);
+
+  const closureFieldId = req.params.closureFieldId;
+
+  req.session.data.fileMetadata = req.session.data.fileMetadata || {};
+  req.session.data.fileMetadata[fileId] = req.session.data.fileMetadata[fileId] || {};
+
+    if (closureFieldId == "descriptionPublic") {
+      const textValue = req.session.data["description-value"];
+      req.session.data.fileMetadata[fileId][closureFieldId] = textValue;
+    } else if (closureFieldId == "FOIexemptionCode") {
+      const inputValue = req.session.data["input-field"];
+      req.session.data.fileMetadata[fileId][closureFieldId] = inputValue;
+    } else if (closureFieldId == "closureStartDate") {
+      const dateDayValue = req.session.data["date-day"];
+      const dateMonthValue = req.session.data["date-month"];
+      const dateYearValue = req.session.data["date-year"];
+      req.session.data.fileMetadata[fileId][closureFieldId] = dateDayValue + "/" + dateMonthValue + "/" + dateYearValue;
+    } else if (closureFieldId == "closurePeriod") {
+      const dateDayValue1 = req.session.data["date-day-1"];
+      const dateMonthValue1 = req.session.data["date-month-1"];
+      const dateYearValue1 = req.session.data["date-year-1"];
+
+      const dateDayValue2 = req.session.data["date-day-2"];
+      const dateMonthValue2 = req.session.data["date-month-2"];
+      const dateYearValue2 = req.session.data["date-year-2"];
+      const from = "From: " + dateDayValue1 + "/" + dateMonthValue1 + "/" + dateYearValue1;
+      const to = "To: " + dateDayValue2 + "/" + dateMonthValue2 + "/" + dateYearValue2;
+      req.session.data.fileMetadata[fileId][closureFieldId] = from + " - " + to;
+    } else if (closureFieldId == "closureType") {
+      const inputValue = req.session.data["input-field"];
+      req.session.data.fileMetadata[fileId][closureFieldId] = inputValue;
+    }
 
   req.session.data = { fileMetadata: req.session.data.fileMetadata } // Because the only thing to persist in the state is the file metadata information
 

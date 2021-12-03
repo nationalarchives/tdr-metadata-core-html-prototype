@@ -7,19 +7,30 @@ GOV.UK Prototype Kit
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">
-      Edit metadata
+    <h1 class="govuk-heading-l">
+      Add or edit descriptive data on file basis
     </h1>{{releaseVersion | log }}
-    <p class="govuk-body">If you would like to add further description to your transfer you can do so here, otherwise
-      you can continue with your transfer.</p>
-    <p class="govuk-body">Add metadata for all files in folder or alternatively select individual files. </p>
-    <a href="/" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-      Back to Dashboard
-    </a>
-    <a href="/confirm" aria-label="Continue" role="button" draggable="false" class="govuk-button"
-      data-module="govuk-button">
-      Continue with transfer
-    </a>
+    <p class="govuk-body">You can now add, edit or delete descriptive data to individual files or folders. You can also
+      delete individual files from this consignment if needed.</p>
+    <p class="govuk-body">Click on a particular file or folder to see what metadata is already captured and add, edit
+      or delete properties there. For a bulk edit, first select files and/or folders and then choose an action from the menu.</p>
+
+    <h2 class="app-task-list__section">Folder uploaded: testrecords</h2>
+
+    <div class="govuk-button-group">
+      <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Select all
+      </button>
+      <a href="#" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Add closure
+      </a>
+      <a href="add-field-to-file/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+        Add metadata fields
+      </a>
+      <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Delete file
+      </button>
+    </div>
 
     <table class="govuk-table">
       <thead class="govuk-table__head">
@@ -59,10 +70,12 @@ GOV.UK Prototype Kit
         {% endfor %}
       </tbody>
     </table>
-    <a href="/edit-folder/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button"
-      data-module="govuk-button">
-      Add metadata for all files in folder
+
+    <a href="/home-metadata/test-reports" role="button" draggable="false" class="govuk-button govuk-button--secondary"
+       data-module="govuk-button">
+      Back to overview
     </a>
+
   </div>
 </div>
 
