@@ -10,9 +10,9 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        Add field to all files in folder
+        Add closure field to all files in folder
       </h1>{{releaseVersion | log }}
-      <p class="govuk-body">Enter descriptive data for chosen metadata fields.</p>
+      <p class="govuk-body">Enter descriptive data for chosen closure fields.</p>
 
       <div class="govuk-breadcrumbs">
         <ol class="govuk-breadcrumbs__list">
@@ -36,12 +36,12 @@
       <form class="form" method="post">
         <div class="govuk-form-group">
           <h1 class="govuk-label-wrapper">
-            <label class="govuk-label govuk-label--l" for="field-value">
-              {{ field.name }}
+            <label class="govuk-label govuk-label--l" for="description-value">
+              {{ closureField.name }}
             </label>
           </h1>
   
-          {% if field.fieldType == "date" %}
+          {% if closureField.fieldType == "date" %}
           <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hint">
               <div class="govuk-date-input" id="date">
@@ -73,13 +73,13 @@
             </fieldset>
           </div>
 
-          {% elseif field.fieldType == "input" %}
-          <input class="govuk-input" id="field-input" name="field-input" type="text">
+          {% elseif closureField.fieldType == "input" %}
+          <input class="govuk-input" id="input-field" name="input-field" type="text">
 
-          {% elseif field.fieldType == "text" %}
-          <textarea class="govuk-textarea" id="field-value" name="field-value" rows="5" aria-describedby="more-detail-hint" type="text"></textarea>
+          {% elseif closureField.fieldType == "text" %}
+          <textarea class="govuk-textarea" id="description-value" name="description-value" rows="5" aria-describedby="more-detail-hint" type="text"></textarea>
 
-          {% elseif field.fieldType == "daterange" %}
+          {% elseif closureField.fieldType == "daterange" %}
           <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hint">
               <div class="govuk-date-input" id="date">
