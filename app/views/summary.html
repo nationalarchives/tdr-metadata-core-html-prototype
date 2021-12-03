@@ -1,103 +1,83 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-GOV.UK Prototype Kit
+  Check your answers
 {% endblock %}
 
 {% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
 
-<div class="govuk-width-container">
-  <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <div class="govuk-panel govuk-panel--confirmation">
-          <h1 class="govuk-panel__title">
-            Transfer complete
-          </h1>
-          <div class="govuk-panel__body">
-            Your transfer of digital records is now complete.
-          </div>
+      <span class="govuk-caption-l">Step 6 of 6</span>
+      <h1 class="govuk-heading-l">Confirm transfer</h1>
+
+      <p class="govuk-body">Here is a summary of the records you have uploaded.</p>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-half">
+            Series reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            TEST123
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+           Consignment reference
+          </dt>
+          <dd class="govuk-summary-list__value">
+            TDR-2021-GW3
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Transferring body
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Test Department
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Files uploaded for transfer
+          </dt>
+          <dd class="govuk-summary-list__value">
+            10 files uploaded
+          </dd>
+        </div>
+      </dl>
+
+      <p>Please confirm you would like to transfer ownership of the records to The National Archives.</p>
+
+      <form class="form" action="/end-confirmation" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+            <div class="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
+                <label class="govuk-label govuk-checkboxes__label" for="waste">
+                  I confirm that all records are open and no Freedom of Information (FOI) exemptions apply to these records.
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="waste-2" name="waste" type="checkbox" value="mines">
+                <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+                  I confirm that I am transferring legal ownership of these records to The National Archives.
+                </label>
+              </div>
+            </div>
+
+          </fieldset>
         </div>
 
-        <h2 class="govuk-heading-m">What happens next</h2>
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Transfer your records
+        </button>
 
-        <p class="govuk-body">
-          We’ve received your transfer and will notify you when your records are in our archive.
-        </p>
-        <p class="govuk-body">
-          Please do not delete any records until then.
-        </p>
+      </form>
 
-        <p class="govuk-body">
-          <a href="#" class="govuk-link">What did you think of this service?</a> (takes 30 seconds)
-        </p>
-
-
-        <a href="/summary" aria-label="Continue" role="button" draggable="false" class="govuk-button"
-          data-module="govuk-button">
-          Dashboard
-        </a>
-      </div>
     </div>
-  </main>
-</div>
-
-<!-- <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">
-      Transfer Complete
-    </h1>{{releaseVersion | log }}
-    <p> Placeholder for a confirmation page</p>
-
-    <dl class="govuk-summary-list">
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Transferring body
-        </dt>
-        <dd class="govuk-summary-list__value">
-          Department of Muffins
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Transfer by
-        </dt>
-        <dd class="govuk-summary-list__value">
-          Alice Smith
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Created on
-        </dt>
-        <dd class="govuk-summary-list__value">
-          15 August 2020
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Parent folder
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ parentFolderName }}
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Total files
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ totalFiles }}
-        </dd>
-      </div>
-    </dl>
-
-    <a href="confirm" role="button" draggable="false" class="govuk-button govuk-!-margin-right-1"
-      data-module="govuk-button">
-      Confirm transfer
-    </a>
-
   </div>
-</div> -->
-
 {% endblock %}
