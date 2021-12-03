@@ -1,0 +1,119 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Edit field on file basis
+      </h1>{{releaseVersion | log }}
+      <p class="govuk-body">Edit descriptive data for language, legal status, and copyright.</p>
+
+      <div class="govuk-breadcrumbs">
+        <ol class="govuk-breadcrumbs__list">
+          {% for folder in breadcrumbs %}
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="/browse/{{folder.path}}">{{folder.name}}</a>
+            </li>
+          {% endfor %}
+        </ol>
+      </div>
+
+      <form class="form" method="post">
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h1 class="govuk-fieldset__heading">
+                  Language
+                </h1>
+              </legend>
+              <div class="govuk-radios govuk-radios--small">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="language-eng" name="language" type="radio" value="english" checked>
+                  <label class="govuk-label govuk-radios__label" for="language-eng">
+                    English
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="language-wel" name="language" type="radio" value="welsh">
+                  <label class="govuk-label govuk-radios__label" for="language-wel">
+                    Welsh
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="language-eng-wel" name="language" type="radio" value="english-welsh">
+                  <label class="govuk-label govuk-radios__label" for="language-eng-wel">
+                    English and Welsh
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              <h1 class="govuk-fieldset__heading">
+                Legal status
+              </h1>
+            </legend>
+            <div class="govuk-radios govuk-radios--small">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="legal-status-pub" name="legal-status" type="radio" value="public"
+                       checked>
+                <label class="govuk-label govuk-radios__label" for="legal-status-pub">
+                  Public
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="legal-status-clo" name="legal-status" type="radio"
+                       value="closed">
+                <label class="govuk-label govuk-radios__label" for="legal-status-clo">
+                  Closed
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              <h1 class="govuk-fieldset__heading">
+                Copyright
+              </h1>
+            </legend>
+            <div class="govuk-radios govuk-radios--small">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="crown-yes" name="copyright" type="radio" value="crown"
+                       checked>
+                <label class="govuk-label govuk-radios__label" for="crown-yes">
+                  Crown copyright
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="crown-no" name="copyright" type="radio"
+                       value="non-crown">
+                <label class="govuk-label govuk-radios__label" for="crown-no">
+                  Non-Crown copyright
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Save</button>
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

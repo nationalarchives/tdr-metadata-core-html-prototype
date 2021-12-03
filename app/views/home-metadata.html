@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">Step 5 of 6</span>
+    <h1 class="govuk-heading-l">
+      Add or edit descriptive data
+    </h1>{{releaseVersion | log }}
+
+    <p class="govuk-body">You can now add or edit descriptive data to your records. Or you can proceed without by
+      clicking ‘Continue’ on the bottom of this page.</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        <p class="govuk-body">For all files, you can add, edit or delete descriptive data (such as summary or closure).
+          You can choose the properties that are required.</p>
+        <p class="govuk-body govuk-!-font-weight-bold">Folder uploaded: testrecords</p>
+        <p class="govuk-body"><a class="govuk-link" href="/edit-folder/{{ currentPath.join('%2F') }}">Add, edit or delete metadata
+          for all files in the folder</a></p>
+      </li>
+      <li>
+        <p class="govuk-body">For individual files or subfolders, you can add, edit or delete descriptive data (such
+          as summary or closure). You can choose the properties that are required. You can also delete individual files
+          from this consignment.</p>
+
+        <p class="govuk-body"><a class="govuk-link" href="/browse/{{ currentPath }}">Add, edit or delete metadata for
+          individual files or folders</a></p>
+      </li>
+    </ul>
+
+    <a href="/edit-folder/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button"
+      data-module="govuk-button">
+      Continue
+    </a>
+  </div>
+</div>
+
+{% endblock %}

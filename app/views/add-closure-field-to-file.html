@@ -10,9 +10,9 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">
-        Add field to file
+        Add closure field to file
       </h1>{{releaseVersion | log }}
-      <p class="govuk-body">Choose which fields you would like to add.</p>
+      <p class="govuk-body">Choose which closure fields you would like to add.</p>
 
       <div class="govuk-breadcrumbs">
         <ol class="govuk-breadcrumbs__list">
@@ -28,11 +28,11 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <div class="govuk-radios">
-              {% for fieldId, field in allowedFields %}
+              {% for closureFieldId, closureField in allowedClosureFields %}
                 <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="choose-field-{{ fieldId }}" name="choose-field" type="radio" value="{{ fieldId }}">
-                  <label class="govuk-label govuk-radios__label" for="choose-field-{{ fieldId }}">
-                    {{ field.name }}
+                  <input class="govuk-radios__input" id="choose-closure-field-{{ closureFieldId }}" name="choose-closure-field" type="radio" value="{{ closureFieldId }}">
+                  <label class="govuk-label govuk-radios__label" for="choose-closure-field-{{ closureFieldId }}">
+                    {{ closureField.name }}
                   </label>
                 </div>
               {% endfor %}

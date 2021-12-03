@@ -11,17 +11,24 @@ GOV.UK Prototype Kit
     <h1 class="govuk-heading-xl">
       Edit metadata for a single file
     </h1>{{releaseVersion | log }}
-    <p class="govuk-body">Edit the metadata details for a singular file here, otherwise click continue to complete your
-      transfer.</p>
-    <a href="/browse/wildlife-reports" role="button" draggable="false" class="govuk-button govuk-button--secondary"
-      data-module="govuk-button">
-      Back to all folders
-    </a>
+    <p class="govuk-body">You can add new metadata fields or edit or delete existing ones.</p>
 
-    <a href="/confirm" aria-label="Continue" role="button" draggable="false" class="govuk-button"
-      data-module="govuk-button">
-      Continue with transfer
-    </a>
+    <div class="govuk-button-group">
+      <a href="/browse/test-reports" role="button" draggable="false" class="govuk-button govuk-button--secondary"
+        data-module="govuk-button">
+        Back to all folders
+      </a>
+
+      <a href="/add-closure-field-to-file/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button"
+         data-module="govuk-button">
+        Add closure
+      </a>
+
+      <a href="/add-field-to-file/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button"
+         data-module="govuk-button">
+        Add metadata field
+      </a>
+    </div>
 
     <h1 class="govuk-heading-m">
       {% for folder in breadcrumbs %}
@@ -43,31 +50,32 @@ GOV.UK Prototype Kit
         </dd>
       </div>
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
+        <dt class="govuk-summary-list__key" style="border-bottom: none;">
           Language
         </dt>
-        <dd class="govuk-summary-list__value">
+        <dd class="govuk-summary-list__value" style="border-bottom: none;">
           {{ fileDetails.language }}
         </dd>
-        <dd class="govuk-summary-list__actions">
+        <dd class="govuk-summary-list__actions" style="border-bottom: none;">
+          <a class="govuk-link" href="/set-file-prepop-field-value">Edit</a><span class="govuk-visually-hidden"> language, egal status and copyright</span>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key" style="border-bottom: none;">
+          Legal status
+        </dt>
+        <dd class="govuk-summary-list__value" style="border-bottom: none;">
+          {{ fileDetails.status }}
+        </dd>
+        <dd class="govuk-summary-list__actions" style="border-bottom: none;">
         </dd>
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Rights Copyright
+          Copyright
         </dt>
         <dd class="govuk-summary-list__value">
           {{ fileDetails.copyright }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Legal Status
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ fileDetails.status }}
         </dd>
         <dd class="govuk-summary-list__actions">
         </dd>
@@ -102,6 +110,25 @@ GOV.UK Prototype Kit
         <dd class="govuk-summary-list__actions">
         </dd>
       </div>
+      {% for closureFieldId, metadataSummary in fileClosureMetadata %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          {{ allowedClosureFields[closureFieldId].name }}
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ metadataSummary }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a href="/set-file-closure-field-value/{{ currentPath.join('%2F') }}/{{ closureFieldId }}">
+            Edit
+          </a>
+          <br>
+          <a href="/set-file-closure-field-value/{{ currentPath.join('%2F') }}/{{ closureFieldId }}">
+            Delete
+          </a>
+        </dd>
+      </div>
+      {% endfor %}
       {% for fieldId, metadataSummary in fileMetadata %}
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
@@ -111,11 +138,11 @@ GOV.UK Prototype Kit
           {{ metadataSummary }}
         </dd>
         <dd class="govuk-summary-list__actions">
-          <a href="/set-folder-field-value/{{ currentPath.join('%2F') }}/{{ fieldId }}">
+          <a href="/set-file-field-value/{{ currentPath.join('%2F') }}/{{ fieldId }}">
             Edit
           </a>
           <br>
-          <a href="/set-folder-field-value/{{ currentPath.join('%2F') }}/{{ fieldId }}">
+          <a href="/set-file-field-value/{{ currentPath.join('%2F') }}/{{ fieldId }}">
             Delete
           </a>
         </dd>
@@ -123,10 +150,6 @@ GOV.UK Prototype Kit
       {% endfor %}
     </dl>
 
-    <a href="/add-field-to-file/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button"
-      data-module="govuk-button">
-      Add metadata field
-    </a>
   </div>
 </div>
 
