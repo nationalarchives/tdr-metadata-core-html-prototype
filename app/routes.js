@@ -349,7 +349,7 @@ const getFolderClosureMetadata = (fileIds, allFileMetadata) => {
 // Add your routes here - above the module.exports line
 
 router.get('/', function (req, res) {
-  res.redirect("home-metadata/test-reports");
+  res.redirect("index");
 })
 
 router.get("/summary", function (req, res) {
