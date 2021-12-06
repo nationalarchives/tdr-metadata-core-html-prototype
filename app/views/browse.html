@@ -15,17 +15,18 @@ GOV.UK Prototype Kit
     <p class="govuk-body">Click on a particular file or folder to see what metadata is already captured and add, edit
       or delete properties there. For a bulk edit, first select files and/or folders and then choose an action from the menu.</p>
 
-    <h2 class="app-task-list__section">Folder uploaded: testrecords</h2>
+    <h2 class="app-task-list__section">Folder uploaded: testconsignment</h2>
 
     <div class="govuk-button-group">
-      <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-        Select all
-      </button>
+      <button class="govuk-button govuk-button--secondary" data-module="govuk-button" type="button" name="selectAll"
+      value="select-all" onClick="check_all()">
+      Select all
+    </button>
       <a href="#" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
         Add closure
       </a>
       <a href="add-field-to-file/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-        Add metadata fields
+        Add properties
       </a>
       <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
         Delete file
@@ -49,10 +50,16 @@ GOV.UK Prototype Kit
         {% for folderId, folder in contents.folders %}
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
-            📁
-            <a href="/browse/{{ currentPath.concat(folderId).join('%2F') }}">
-              {{folder.name}}
-            </a>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="organisation-2" name="organisation" type="checkbox" value="employment-tribunal">
+              <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+                📁
+                <a href="/browse/{{ currentPath.concat(folderId).join('%2F') }}">
+                  {{folder.name}}
+                </a>
+              </label>
+            </div>
+
           </th>
           <!-- <td class="govuk-table__cell">{{ countFiles(folder) }}</td> -->
         </tr>
@@ -60,10 +67,15 @@ GOV.UK Prototype Kit
         {% for fileId, file in contents.files %}
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
-            {{file.icon}}
-            <a href="/file-summary/{{ currentPath.concat(fileId).join('%2F') }}">
-              {{file.name}}
-            </a>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="organisation-2" name="organisation" type="checkbox" value="employment-tribunal">
+              <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+                {{file.icon}}
+                <a href="/file-summary/{{ currentPath.concat(fileId).join('%2F') }}">
+                  {{file.name}}
+                </a>
+              </label>
+            </div>
           </th>
           <td class="govuk-table__cell"></td>
         </tr>
@@ -78,5 +90,16 @@ GOV.UK Prototype Kit
 
   </div>
 </div>
+
+<script type="text/javascript">
+  function check_all() {
+    var checkboxes = document.getElementsByName('organisation');
+    checkboxes = [...checkboxes];
+    for (var i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].checked = true
+    }
+  }
+  
+</script>
 
 {% endblock %}

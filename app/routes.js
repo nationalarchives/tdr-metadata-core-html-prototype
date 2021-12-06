@@ -5,7 +5,7 @@ const router = express.Router()
 const allFiles = {
   folders: {
     "test-reports": {
-      name: "test records",
+      name: "testconsignment",
       folders: {
         "test-2-reports": {
           name: "test reports",
@@ -53,46 +53,6 @@ const allFiles = {
                 },
                 "test-2006": {
                   name: "test report 2006.docx",
-                  language: "English",
-                  copyright:"Crown Copyright",
-                  status: "Public Record",
-                  filepath:"/home/admin/transfers",
-                  datelast: "25/05/2020",
-                  checksum:"SHA256",
-                  icon: "🧾"
-                },
-                "test-2007": {
-                  name: "test report 2007.docx",
-                  language: "English",
-                  copyright:"Crown Copyright",
-                  status: "Public Record",
-                  filepath:"/home/admin/transfers",
-                  datelast: "25/05/2020",
-                  checksum:"SHA256",
-                  icon: "🧾"
-                },
-                "test-2008": {
-                  name: "test report 2008.docx",
-                  language: "English",
-                  copyright:"Crown Copyright",
-                  status: "Public Record",
-                  filepath:"/home/admin/transfers",
-                  datelast: "25/05/2020",
-                  checksum:"SHA256",
-                  icon: "🧾"
-                },
-                "test-2009": {
-                  name: "test report 2009.docx",
-                  language: "English",
-                  copyright:"Crown Copyright",
-                  status: "Public Record",
-                  filepath:"/home/admin/transfers",
-                  datelast: "25/05/2020",
-                  checksum:"SHA256",
-                  icon: "🧾"
-                },
-                "test-2010": {
-                  name: "test report 2010.docx",
                   language: "English",
                   copyright:"Crown Copyright",
                   status: "Public Record",
