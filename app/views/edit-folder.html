@@ -89,13 +89,13 @@ GOV.UK Prototype Kit
       </div>
       {% for closureFieldId, metadataSummary in folderClosureMetadata %}
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
+        <dt class="govuk-summary-list__key" style="border-bottom: none;">
           {{ allowedClosureFields[closureFieldId].name }}
         </dt>
-        <dd class="govuk-summary-list__value">
+        <dd class="govuk-summary-list__value" style="border-bottom: none;">
           {{ metadataSummary }}
         </dd>
-        <dd class="govuk-summary-list__actions">
+        <dd class="govuk-summary-list__actions" style="border-bottom: none;">
           <a href="/set-folder-closure-field-value/{{ currentPath.join('%2F') }}/{{ closureFieldId }}">
             Edit
           </a>

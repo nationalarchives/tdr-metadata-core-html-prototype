@@ -129,25 +129,6 @@ GOV.UK Prototype Kit
         </dd>
       </div>
       {% endfor %}
-      {% for fieldId, metadataSummary in fileMetadata %}
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          {{ allowedFields[fieldId].name }}
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ metadataSummary }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          <a href="/set-file-field-value/{{ currentPath.join('%2F') }}/{{ fieldId }}">
-            Edit
-          </a>
-          <br>
-          <a href="/set-file-field-value/{{ currentPath.join('%2F') }}/{{ fieldId }}">
-            Delete
-          </a>
-        </dd>
-      </div>
-      {% endfor %}
     </dl>
 
   </div>

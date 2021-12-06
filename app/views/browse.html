@@ -22,7 +22,7 @@ GOV.UK Prototype Kit
       value="select-all" onClick="check_all()">
       Select all
     </button>
-      <a href="#" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+      <a href="add-closure-to-file/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
         Add closure
       </a>
       <a href="add-field-to-file/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
@@ -51,8 +51,8 @@ GOV.UK Prototype Kit
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="organisation-2" name="organisation" type="checkbox" value="employment-tribunal">
-              <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+              <input class="govuk-checkboxes__input" id="organisation" name="organisation" type="checkbox" value="employment-tribunal">
+              <label class="govuk-label govuk-checkboxes__label" for="organisation">
                 📁
                 <a href="/browse/{{ currentPath.concat(folderId).join('%2F') }}">
                   {{folder.name}}
@@ -68,8 +68,8 @@ GOV.UK Prototype Kit
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="organisation-2" name="organisation" type="checkbox" value="employment-tribunal">
-              <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+              <input class="govuk-checkboxes__input" id="organisation" name="organisation" type="checkbox" value="employment-tribunal">
+              <label class="govuk-label govuk-checkboxes__label" for="organisation">
                 {{file.icon}}
                 <a href="/file-summary/{{ currentPath.concat(fileId).join('%2F') }}">
                   {{file.name}}

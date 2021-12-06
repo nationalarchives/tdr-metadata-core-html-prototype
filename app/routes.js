@@ -150,7 +150,7 @@ const allowedFields = {
   dateCreated: { name: "Original creation date", fieldType: "date" },
   dateRange: { name: "Date range", fieldType: "daterange" },
   creatingBody: { name: "Creating body", fieldType: "input" },
-  summary: { name: "Summary", fieldType: "text" }
+  summary: { name: "Summary", fieldType: "text" },
 }
 
 const allowedClosureFields = {
@@ -391,15 +391,15 @@ router.get('/file-summary/:path', function (req, res) {
   const fileDetails = parentFolder.files[fileId];
   const breadcrumbs = getFileBreadcrumbs([], allFiles, pathParts);
 
-  const fileMetadata = (req.session.data.fileMetadata || {})[fileId] || {};
+  const fileClosureMetadata = (req.session.data.fileMetadata || {})[fileId] || {};
 
   res.render('file-summary', {
     currentPath: pathParts,
     breadcrumbs: breadcrumbs,
     fileDetails: fileDetails,
-    fileMetadata: fileMetadata,
     allowedFields: allowedFields,
-    allowedClosureFields: allowedClosureFields
+    allowedClosureFields: allowedClosureFields,
+    fileClosureMetadata: fileClosureMetadata
   });
 });
 
