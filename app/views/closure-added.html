@@ -1,0 +1,189 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">
+      Edit metadata for all files in folder
+    </h1>{{releaseVersion | log }}
+    <p class="govuk-body">You can add new metadata fields or edit or delete existing ones.</p>
+    <a href="/home-metadata/test-reports" role="button" draggable="false" class="govuk-button govuk-button--secondary"
+      data-module="govuk-button">
+      Back to overview
+    </a>
+
+    <a href="/add-closure-field-to-folder.html" aria-label="Continue" role="button" draggable="false" class="govuk-button"
+      data-module="govuk-button">
+      Add closure
+    </a>
+
+    <a href="#" aria-label="Continue" role="button" draggable="false" class="govuk-button"
+       data-module="govuk-button">
+      Add metadata fields
+    </a>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Name of folder
+        </dt>
+        <dd class="govuk-summary-list__value">
+            chocolate-muffin
+        </dd>
+        <dd class="govuk-summary-list__actions">
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Total files in folder
+        </dt>
+        <dd class="govuk-summary-list__value">
+          10
+        </dd>
+        <dd class="govuk-summary-list__actions">
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key" style="border-bottom: none;">
+          Language
+        </dt>
+        <dd class="govuk-summary-list__value" style="border-bottom: none;">
+          English
+        </dd>
+        <dd class="govuk-summary-list__actions" style="border-bottom: none;">
+          <a class="govuk-link" href="/set-folder-prepop-field-value">Edit</a><span class="govuk-visually-hidden"> language, egal status and copyright</span>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key" style="border-bottom: none;">
+          Legal status
+        </dt>
+        <dd class="govuk-summary-list__value" style="border-bottom: none;">
+          Public
+        </dd>
+        <dd class="govuk-summary-list__actions" style="border-bottom: none;">
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Copyright
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Crown copyright
+        </dd>
+        <dd class="govuk-summary-list__actions">
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key" style="border-bottom: none;">
+          Closure type
+        </dt>
+        <dd class="govuk-summary-list__value" style="border-bottom: none;">
+          Closed
+        </dd>
+        <dd class="govuk-summary-list__actions" style="border-bottom: none;">
+          <a href="#">
+            Edit
+          </a>
+          <br>
+          <a href="#">
+            Delete
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key" style="border-bottom: none;">
+          Closure period
+        </dt>
+        <dd class="govuk-summary-list__value" style="border-bottom: none;">
+          20 years
+        </dd>
+        <dd class="govuk-summary-list__actions" style="border-bottom: none;">
+          <a href="#">
+            Edit
+          </a>
+          <br>
+          <a href="#">
+            Delete
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key" style="border-bottom: none;">
+          Closure start date
+        </dt>
+        <dd class="govuk-summary-list__value" style="border-bottom: none;">
+          25/11/2021
+        </dd>
+        <dd class="govuk-summary-list__actions" style="border-bottom: none;">
+          <a href="#">
+            Edit
+          </a>
+          <br>
+          <a href="#">
+            Delete
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key" style="border-bottom: none;">
+            FOI exemption code
+        </dt>
+        <dd class="govuk-summary-list__value" style="border-bottom: none;">
+          CODE-HERE
+        </dd>
+        <dd class="govuk-summary-list__actions" style="border-bottom: none;">
+          <a href="#">
+            Edit
+          </a>
+          <br>
+          <a href="#">
+            Delete
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key" style="border-bottom: none;">
+            FOI exemption asserted
+        </dt>
+        <dd class="govuk-summary-list__value" style="border-bottom: none;">
+          01/11/2021
+        </dd>
+        <dd class="govuk-summary-list__actions" style="border-bottom: none;">
+          <a href="#">
+            Edit
+          </a>
+          <br>
+          <a href="#">
+            Delete
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key" style="border-bottom: none;">
+          Title public
+        </dt>
+        <dd class="govuk-summary-list__value" style="border-bottom: none;">
+          Some title name here
+        </dd>
+        <dd class="govuk-summary-list__actions" style="border-bottom: none;">
+          <a href="#">
+            Edit
+          </a>
+          <br>
+          <a href="#">
+            Delete
+          </a>
+        </dd>
+      </div>
+    </dl>
+
+  </div>
+</div>
+
+{% endblock %}

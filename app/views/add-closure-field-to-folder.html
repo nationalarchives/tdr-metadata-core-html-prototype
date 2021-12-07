@@ -12,35 +12,46 @@
       <h1 class="govuk-heading-l">
         Add closure field
       </h1>{{releaseVersion | log }}
-      <p class="govuk-body">Choose which closure fields you would like to add.</p>
+      <p class="govuk-body">You must select all fields as they are mandaatory for closure.</p>
 
       <div class="govuk-warning-text">
         <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
         <strong class="govuk-warning-text__text">
           <span class="govuk-warning-text__assistive">Warning</span>
-          Please note that this action applies to all {{ countFiles(contents) }} files in this folder. It may overwrite
-          a value that you set earlier.
+          Please note that this action applies to all 10 files in this folder.
         </strong>
       </div>
 
-      <form class="form" method="post">
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset">
-            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-              {% for closureFieldId, closureField in allowedClosureFields %}
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="choose-closure-field-{{ closureFieldId }}" name="choose-closure-field" type="checkbox" value="{{ closureFieldId }}">
-                <label class="govuk-label govuk-checkboxes__label" for="choose-closure-field-{{ closureFieldId }}">
-                  {{ closureField.name }}
-                </label>
-              </div>
-              {% endfor %}
-            </div>
+      <p class="govuk-body">You must provide the following information:</p>
+<ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+  <li>
+    Closure type
+  </li>
+  <li>
+    Closure period
+  </li>
+  <li>
+    Closure start date, this is the date the record starts
+  </li>
+  <li>
+    FOI exemption code
+  </li>
+  <li>
+    FOI exemption asserted, this is the date of the Advisory Council approval
+  </li>
+  <li>
+    Title public
+  </li>
+  <li>
+    Title alternative, this is if the title is sensitive to the public
+  </li>
+</ul>
 
-          </fieldset>
-        </div>
+      <a href="/add-closure-to-all.html" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
+        Continue
+    </a>
 
-        <button class="govuk-button" data-module="govuk-button">Continue</button>
+<!-- <button class="govuk-button" data-module="govuk-button">Continue</button> -->
       </form>
     </div>
   </div>

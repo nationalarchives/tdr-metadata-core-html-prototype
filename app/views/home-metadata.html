@@ -15,13 +15,22 @@ GOV.UK Prototype Kit
     <p class="govuk-body">You can now add or edit descriptive data to your records. Or you can proceed without by
       clicking ‘Continue’ on the bottom of this page.</p>
 
+      <p class="govuk-body govuk-!-font-weight-bold">Folder uploaded: chocolate-muffin</p>
+
     <ul class="govuk-list govuk-list--bullet">
       <li>
         <p class="govuk-body">For all files, you can add, edit or delete descriptive data (such as summary or closure).
           You can choose the properties that are required.</p>
-        <p class="govuk-body govuk-!-font-weight-bold">Folder uploaded: testconsignment</p>
         <p class="govuk-body"><a class="govuk-link" href="/edit-folder/{{ currentPath.join('%2F') }}">Add, edit or delete metadata
           for all files in the folder</a></p>
+
+          <div class="govuk-warning-text">
+            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+            <strong class="govuk-warning-text__text">
+              <span class="govuk-warning-text__assistive">Warning</span>
+              Beware that adding metadata at folder level will apply to all the files within the folder
+            </strong>
+          </div>
       </li>
       <li>
         <p class="govuk-body">For individual files or subfolders, you can add, edit or delete descriptive data (such

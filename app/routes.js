@@ -5,10 +5,10 @@ const router = express.Router()
 const allFiles = {
   folders: {
     "test-reports": {
-      name: "testconsignment",
+      name: "chocolate-muffin",
       folders: {
         "test-2-reports": {
-          name: "test reports",
+          name: "Recipes",
           folders: {
             "test-annual": {
               name: "annual test reports",
@@ -78,7 +78,7 @@ const allFiles = {
           }
         },
         "test-reports": {
-          name: "test reports",
+          name: "Ingredients",
           folders: {},
           files: {
             "test-photo": {
@@ -106,7 +106,7 @@ const allFiles = {
       },
       files: {
         "annual-report": {
-          name: "Annual report.docx",
+          name: "Chocolate-chips.docx",
           language: "English",
           copyright:"Crown Copyright",
           status: "Public Record",
@@ -116,7 +116,7 @@ const allFiles = {
           icon: "🧾"
         },
         "stats": {
-          name: "Statistics.xlsx",
+          name: "Cacao.xlsx",
           language: "English",
           copyright:"Crown Copyright",
           status: "Public Record",
@@ -126,7 +126,7 @@ const allFiles = {
           icon: "📊"
         },
         "test click photo": {
-          name: "test click photo.jpg",
+          name: "Flour.jpg",
           language: "English",
           copyright:"Crown Copyright",
           status: "Public Record",
@@ -155,10 +155,12 @@ const allowedFields = {
 
 const allowedClosureFields = {
   closureType: { name: "Closure type", fieldType: "input" },
-  closurePeriod: { name: "Closure period", fieldType: "daterange" },
+  closurePeriod: { name: "Closure period", fieldType: "input" },
   closureStartDate: { name: "Closure start date", fieldType: "date" },
   FOIexemptionCode: { name: "FOI exemption code", fieldType: "input" },
-  descriptionPublic: { name: "Description public", fieldType: "text"}
+  FOIexemptionAsserted: { name: "FOI exemption asserted", fieldType: "input"},
+  titlePublic: { name: "Title public", fieldType: "input" },
+  titleAlternative: { name: "Title alternative", fieldType: "input"}
 }
 
 const getFiles = (files, pathParts) => {
