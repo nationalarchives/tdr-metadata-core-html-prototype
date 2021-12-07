@@ -80,36 +80,6 @@ GOV.UK Prototype Kit
         <dd class="govuk-summary-list__actions">
         </dd>
       </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          File Path
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ fileDetails.filepath }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Date Last Modified
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ fileDetails.datelast }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Checksum
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ fileDetails.checksum }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-        </dd>
-      </div>
       {% for closureFieldId, metadataSummary in fileClosureMetadata %}
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
