@@ -5,6 +5,7 @@ GOV.UK Prototype Kit
 {% endblock %}
 
 {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -29,13 +30,13 @@ GOV.UK Prototype Kit
                 </legend>
                 <div class="govuk-radios">
                     <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="open" name="open" type="radio" value="england">
+                        <input class="govuk-radios__input" id="open" name="closure-type" type="radio" value="open">
                         <label class="govuk-label govuk-radios__label" for="open">
                             Open
                         </label>
                     </div>
                     <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="closed-2" name="closed" type="radio" value="scotland">
+                        <input class="govuk-radios__input" id="closed-2" name="closure-type" type="radio" value="closed">
                         <label class="govuk-label govuk-radios__label" for="closed-2">
                             Closed
                         </label>
@@ -156,30 +157,29 @@ GOV.UK Prototype Kit
                     Title public
                 </label>
             </h1>
-            <input class="govuk-input" id="event-name" name="event-name" type="text">
         </div>
         <div class="govuk-form-group">
             <fieldset class="govuk-fieldset">
-                <legend class="govuk-fieldset__legend">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                     Is the title sensitive to the public?
                 </legend>
                 <div class="govuk-radios">
                     <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="yes" name="yes" type="radio" value="england">
-                        <label class="govuk-label govuk-radios__label" for="yes" id="watch-me">
+                        <input class="govuk-radios__input" id="yes" name="is-the-title-sensitive" type="radio" value="yes">
+                        <label class="govuk-label govuk-radios__label" for="yes">
                             Yes
                         </label>
                     </div>
                     <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="no-2" name="no" type="radio" value="scotland">
-                        <label class="govuk-label govuk-radios__label" for="no-2">
+                        <input class="govuk-radios__input" id="no" name="is-the-title-sensitive" type="radio" value="no">
+                        <label class="govuk-label govuk-radios__label" for="no">
                             No
                         </label>
                     </div>
                 </div>
             </fieldset>
         </div>
-        <div class="show-me">
+        <div id="show-me">
             <div class="govuk-form-group">
                 <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
                         Title alternative
@@ -202,13 +202,11 @@ GOV.UK Prototype Kit
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('input[type="radio"]').click(function () {
-            if ($(this).attr('id') == 'watch-me') {
-                $('#show-me').show();
-            }
-            else {
-                $('#show-me').hide();
-            }
+        $('#yes').click(function () {
+            $('#show-me').show();
+        });
+        $('#no').click(function () {
+            $('#show-me').hide();
         });
     });
 </script>
