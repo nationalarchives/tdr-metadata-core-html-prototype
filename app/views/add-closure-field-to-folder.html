@@ -1,59 +1,56 @@
-
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  GOV.UK Prototype Kit
+GOV.UK Prototype Kit
 {% endblock %}
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">
-        Add closure field
-      </h1>{{releaseVersion | log }}
-      <p class="govuk-body">You must select all fields as they are mandaatory for closure.</p>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">
+      Add closure field
+    </h1>{{releaseVersion | log }}
+    <p class="govuk-body">You must enter metadata for all fields as they are mandatory for closure.</p>
 
-      <div class="govuk-warning-text">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <strong class="govuk-warning-text__text">
-          <span class="govuk-warning-text__assistive">Warning</span>
-          Please note that this action applies to all 10 files in this folder.
-        </strong>
-      </div>
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        Please note that this action applies to all 10 files in this folder. Also, if the title is sensitive to the
+        public just beware that adding an alternative title will change the title of all files to sensitive.
+      </strong>
+    </div>
 
-      <p class="govuk-body">You must provide the following information:</p>
-<ul class="govuk-list govuk-list--bullet govuk-list--spaced">
-  <li>
-    Closure type
-  </li>
-  <li>
-    Closure period
-  </li>
-  <li>
-    Closure start date, this is the date the record starts
-  </li>
-  <li>
-    FOI exemption code
-  </li>
-  <li>
-    FOI exemption asserted, this is the date of the Advisory Council approval
-  </li>
-  <li>
-    Title public
-  </li>
-  <li>
-    Title alternative, this is if the title is sensitive to the public
-  </li>
-</ul>
+    <p class="govuk-body">You must provide the following information:</p>
+    <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+      <li>
+        Closure type
+      </li>
+      <li>
+        Closure period
+      </li>
+      <li>
+        Closure start date, this is the date the record starts
+      </li>
+      <li>
+        FOI exemption code
+      </li>
+      <li>
+        FOI exemption asserted, this is the date of the Advisory Council approval
+      </li>
+      <li>
+        Title public
+      </li>
+    </ul>
 
-      <a href="/add-closure-to-all.html" role="button" draggable="false" class="govuk-button"  data-module="govuk-button">
-        Continue
+    <a href="/add-closure-to-all.html" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+      Continue
     </a>
 
-<!-- <button class="govuk-button" data-module="govuk-button">Continue</button> -->
-      </form>
-    </div>
+    <!-- <button class="govuk-button" data-module="govuk-button">Continue</button> -->
+    </form>
   </div>
+</div>
 
 {% endblock %}

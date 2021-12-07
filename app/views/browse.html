@@ -34,52 +34,68 @@ GOV.UK Prototype Kit
     </div>
 
     <table class="govuk-table">
-      <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-          <h1 class="govuk-heading-m">
-            {% for folder in breadcrumbs %}
-            <li class="govuk-breadcrumbs__list-item">
-              <a class="govuk-breadcrumbs__link" href="/browse/{{folder.path}}">{{folder.name}}</a>
-            </li>
-            {% endfor %}
-          </h1>
-          <!-- <th scope="col" class="govuk-table__header">Total files</th> -->
-        </tr>
-      </thead>
+      <!-- <div class="hmcts-search">
+        <form action="" method="get">
+          <div class="govuk-form-group">
+            <input class="govuk-input hmcts-search__input " id="bill" name="bill" type="search"
+              aria-describedby="bill-hint" placeholder="Search...">
+          </div>
+        </form>
+      </div> -->
       <tbody class="govuk-table__body">
-        {% for folderId, folder in contents.folders %}
         <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
+          <td class="govuk-table__cell">
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="organisation" name="organisation" type="checkbox" value="employment-tribunal">
+              <input class="govuk-checkboxes__input" id="Subfolder-Lemon-drizzle" name="organisation" type="checkbox"
+                value="hmrc">
               <label class="govuk-label govuk-checkboxes__label" for="organisation">
-                📁
-                <a href="/browse/{{ currentPath.concat(folderId).join('%2F') }}">
-                  {{folder.name}}
-                </a>
+                <a href="#">📁 Recipes</a>
               </label>
             </div>
-
-          </th>
-          <!-- <td class="govuk-table__cell">{{ countFiles(folder) }}</td> -->
+          </td>
         </tr>
-        {% endfor %}
-        {% for fileId, file in contents.files %}
         <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
+          <td class="govuk-table__cell">
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="organisation" name="organisation" type="checkbox" value="employment-tribunal">
+              <input class="govuk-checkboxes__input" id="Subfolder-Chocolate-banana-bread" name="organisation"
+                type="checkbox" value="hmrc">
               <label class="govuk-label govuk-checkboxes__label" for="organisation">
-                {{file.icon}}
-                <a href="/file-summary/{{ currentPath.concat(fileId).join('%2F') }}">
-                  {{file.name}}
-                </a>
+                <a href="#">📁 Ingredients</a>
               </label>
             </div>
-          </th>
-          <td class="govuk-table__cell"></td>
+          </td>
         </tr>
-        {% endfor %}
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="Banana" name="organisation" type="checkbox" value="hmrc">
+              <label class="govuk-label govuk-checkboxes__label" for="organisation">
+                <a href="/file-summary-cc.html">🧾 Chocolate-chips.docx</a>
+              </label>
+            </div>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="Cacao-powder" name="organisation" type="checkbox" value="hmrc">
+              <label class="govuk-label govuk-checkboxes__label" for="organisation">
+                <a href="#">📊 Cacao.xlsx</a>
+              </label>
+            </div>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="Chocolate-bun" name="organisation" type="checkbox"
+                value="hmrc">
+              <label class="govuk-label govuk-checkboxes__label" for="organisation">
+                <a href="/file-summary-flour.html">🖼️ Flour.jpg</a>
+              </label>
+            </div>
+          </td>
+        </tr>
       </tbody>
     </table>
 
