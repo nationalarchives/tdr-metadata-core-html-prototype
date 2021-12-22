@@ -25,7 +25,7 @@ GOV.UK Prototype Kit
       <!--<a href="/add-closure-to-file" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
         Add closure
       </a>-->
-      <a href="#" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+      <a id="closureLink" href="#" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
         Add closure
       </a>
 <!--      <a href="add-field-to-file/{{ currentPath.join('%2F') }}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
@@ -54,7 +54,7 @@ GOV.UK Prototype Kit
             <div class="govuk-checkboxes__item">
               <input class="govuk-checkboxes__input" id="Subfolder-Lemon-drizzle" name="organisation" type="checkbox"
                 value="hmrc">
-              <label class="govuk-label govuk-checkboxes__label" for="organisation">
+              <label class="govuk-label govuk-checkboxes__label" for="Subfolder-Lemon-drizzle">
                 <a href="#">📁 Recipes</a>
               </label>
             </div>
@@ -65,7 +65,7 @@ GOV.UK Prototype Kit
             <div class="govuk-checkboxes__item">
               <input class="govuk-checkboxes__input" id="Subfolder-Chocolate-banana-bread" name="organisation"
                 type="checkbox" value="hmrc">
-              <label class="govuk-label govuk-checkboxes__label" for="organisation">
+              <label class="govuk-label govuk-checkboxes__label" for="Subfolder-Chocolate-banana-bread">
                 <a href="#">📁 Ingredients</a>
               </label>
             </div>
@@ -74,8 +74,9 @@ GOV.UK Prototype Kit
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="Banana" name="organisation" type="checkbox" value="hmrc">
-              <label class="govuk-label govuk-checkboxes__label" for="organisation">
+              <input class="govuk-checkboxes__input" onchange="changeLink()" id="choc-chips" name="organisation" type="checkbox" value="cc"
+                     data-href="cc">
+              <label class="govuk-label govuk-checkboxes__label" for="choc-chips">
                 <a href="/file-summary-cc.html">🧾 Chocolate-chips.docx</a>
               </label>
             </div>
@@ -85,7 +86,7 @@ GOV.UK Prototype Kit
           <td class="govuk-table__cell">
             <div class="govuk-checkboxes__item">
               <input class="govuk-checkboxes__input" id="Cacao-powder" name="organisation" type="checkbox" value="hmrc">
-              <label class="govuk-label govuk-checkboxes__label" for="organisation">
+              <label class="govuk-label govuk-checkboxes__label" for="Cacao-powder">
                 <a href="#">📊 Cacao.xlsx</a>
               </label>
             </div>
@@ -94,9 +95,9 @@ GOV.UK Prototype Kit
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">
             <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="Chocolate-bun" name="organisation" type="checkbox"
-                value="hmrc">
-              <label class="govuk-label govuk-checkboxes__label" for="organisation">
+              <input class="govuk-checkboxes__input" id="flour" name="organisation" type="checkbox"
+                value="flour" onchange="changeLinkBack()">
+              <label class="govuk-label govuk-checkboxes__label" for="flour">
                 <a href="/file-summary-flour.html">🖼️ Flour.jpg</a>
               </label>
             </div>
@@ -119,6 +120,18 @@ GOV.UK Prototype Kit
     checkboxes = [...checkboxes];
     for (var i = 0; i < checkboxes.length; i++) {
       checkboxes[i].checked = true
+    }
+  }
+
+  function changeLink() {
+    if (document.getElementById("choc-chips").checked && !document.getElementById("flour").checked) {
+      document.getElementById("closureLink").setAttribute("href", "/add-closure-field-to-file-cc")
+    }
+  }
+
+  function changeLinkBack() {
+    if (document.getElementById("flour").checked) {
+      document.getElementById("closureLink").setAttribute("href", "/add-closure-field-to-file-flour")
     }
   }
   
