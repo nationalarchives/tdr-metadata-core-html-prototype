@@ -9,35 +9,37 @@ Add or edit descriptive data
   <div class="govuk-grid-column-two-thirds">
     <span class="govuk-caption-l">Step 5 of 6</span>
     <h1 class="govuk-heading-l">
-      Add or edit descriptive data
+      Add closure and other metadata
     </h1>{{releaseVersion | log }}
 
-    <p class="govuk-body">You can now add or edit descriptive data to your records. Or you can proceed without by
-      clicking ‘Continue’ on the bottom of this page.</p>
+    <p class="govuk-body">You can now add or edit closure and other metadata to your records. Or you can proceed without by
+      clicking ‘Continue’ at the bottom of this page.</p>
 
-      <p class="govuk-body govuk-!-font-weight-bold">Folder uploaded: chocolate-muffin</p>
+    <h3 class="govuk-heading-m">Folder uploaded: chocolate-muffin</h3>
 
     <ul class="govuk-list govuk-list--bullet">
       <li>
-        <p class="govuk-body">For all files, you can add, edit or delete descriptive data (such as summary or closure).
-          You can choose the properties that are required.</p>
-        <p class="govuk-body"><a class="govuk-link" href="/edit-folder/{{ currentPath.join('%2F') }}">Add, edit or delete metadata
-          for all files in the folder</a></p>
+        <p class="govuk-body">For all files, you can add or edit closure and other metadata.
+          You can choose the metadata fields that are required.
+        </p>
+
+        <p class="govuk-body"><a class="govuk-link" href="/edit-folder/{{ currentPath.join('%2F') }}">Add / edit
+          closure and other metadata for all files in the folder</a></p>
 
           <div class="govuk-warning-text">
             <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
             <strong class="govuk-warning-text__text">
               <span class="govuk-warning-text__assistive">Warning</span>
-              Beware that adding metadata at folder level will apply to all the files within the folder
+              Adding metadata at folder level will apply to all the files within the folder
             </strong>
           </div>
       </li>
       <li>
-        <p class="govuk-body">For individual files or subfolders, you can add, edit or delete descriptive data (such
-          as summary or closure). You can choose the properties that are required. You can also delete individual files
-          from this consignment.</p>
+        <p class="govuk-body">For individual files or subfolders, you can add or edit closure and other metadata.
+          You can choose the metadata fields that are required. You can also delete individual files from this consignment.
+        </p>
 
-        <p class="govuk-body"><a class="govuk-link" href="/browse/{{ currentPath }}">Add, edit or delete metadata for
+        <p class="govuk-body"><a class="govuk-link" href="/browse/{{ currentPath }}">Add / edit closure and other metadata for
           individual files or folders</a></p>
       </li>
     </ul>

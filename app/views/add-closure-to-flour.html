@@ -14,55 +14,26 @@ Add closure fields to file
         </h1>{{releaseVersion | log }}
         <p class="govuk-body">Enter metadata for closure fields here.</p>
 
-        <div class="govuk-warning-text">
-            <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-            <strong class="govuk-warning-text__text">
-                <span class="govuk-warning-text__assistive">Warning</span>
-              Please note that this action applies to all metadata in file 'Flour.jpg'
-            </strong>
-        </div>
         <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                    <h1 class="govuk-fieldset__heading">
-                        Closure type
-                    </h1>
-                </legend>
-                <div class="govuk-radios">
-                    <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="open" name="closure-type" type="radio" value="open">
-                        <label class="govuk-label govuk-radios__label" for="open">
-                            Open
-                        </label>
-                    </div>
-                    <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="closed-2" name="closure-type" type="radio" value="closed">
-                        <label class="govuk-label govuk-radios__label" for="closed-2">
-                            Closed
-                        </label>
-                    </div>
-                </div>
-
-            </fieldset>
-        </div>
-
-        <div class="govuk-form-group">
-            <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
-                    Closure period
-                </label>
-                <div id="passport-issued-hint" class="govuk-hint">
-                    Enter the amount of years this record will be closed for
-                </div>
-            </h1>
-            <input class="govuk-input" id="event-name" name="event-name" type="text">
+            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="years">
+                Closure period
+            </label>
+            </h2>
+            <div id="closure-period-hint" class="govuk-hint">
+                Enter the amount of years this record will be closed for
+            </div>
+            <div class="govuk-input__wrapper"><input class="govuk-input govuk-input--width-5" id="years" name="years"
+                                                     type="text" spellcheck="false">
+                <div class="govuk-input__suffix" aria-hidden="true">years</div>
+            </div>
         </div>
 
         <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                    <h1 class="govuk-fieldset__heading">
+                    <h2 class="govuk-label govuk-label--m">
                         Closure start date
-                    </h1>
+                    </h2>
                 </legend>
                 <div id="passport-issued-hint" class="govuk-hint">
                     Date the record starts
@@ -74,8 +45,8 @@ Add closure fields to file
                                 Day
                             </label>
                             <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                id="passport-issued-day" name="passport-issued-day" type="text" pattern="[0-9]*"
-                                inputmode="numeric">
+                                   id="passport-issued-day" name="passport-issued-day" type="text" pattern="[0-9]*"
+                                   inputmode="numeric">
                         </div>
                     </div>
                     <div class="govuk-date-input__item">
@@ -84,8 +55,8 @@ Add closure fields to file
                                 Month
                             </label>
                             <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                id="passport-issued-month" name="passport-issued-month" type="text" pattern="[0-9]*"
-                                inputmode="numeric">
+                                   id="passport-issued-month" name="passport-issued-month" type="text" pattern="[0-9]*"
+                                   inputmode="numeric">
                         </div>
                     </div>
                     <div class="govuk-date-input__item">
@@ -94,8 +65,8 @@ Add closure fields to file
                                 Year
                             </label>
                             <input class="govuk-input govuk-date-input__input govuk-input--width-4"
-                                id="passport-issued-year" name="passport-issued-year" type="text" pattern="[0-9]*"
-                                inputmode="numeric">
+                                   id="passport-issued-year" name="passport-issued-year" type="text" pattern="[0-9]*"
+                                   inputmode="numeric">
                         </div>
                     </div>
                 </div>
@@ -104,21 +75,26 @@ Add closure fields to file
         </div>
 
         <div class="govuk-form-group">
-            <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
-                    FOI exemption code
-                </label>
-            </h1>
+            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="event-name">
+                FOI exemption code
+            </label>
+            </h2>
+            <div id="foi-codes-hint" class="govuk-hint">
+                Enter the FOI exemption codes that apply and, if multiple, separate them with comma (,)<br/>23, 24, 25, 26,
+                27(1), 27(2), 28, 29, 30(1), 30(2), 31, 32, 33, 34, 35(1)(a), 35(1)(b), 35(1)(c), 35(1)(d), 36, 37(1)(a),
+                37(1)(aa), 37(1)(ab), 37(1)(ac), 37(1)(ad), 37(1)(b), 38, 39, 40(1), 40(2), 41, 42, 43(1), 43(2), 44
+            </div>
             <input class="govuk-input" id="event-name" name="event-name" type="text">
         </div>
 
         <div class="govuk-form-group">
-            <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
-                    FOI exemption asserted
-                </label>
+            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="event-name">
+                FOI exemption asserted
+            </label>
                 <div id="passport-issued-hint" class="govuk-hint">
                     Date of the Advisory Council approval
                 </div>
-            </h1>
+            </h2>
             <div class="govuk-date-input" id="passport-issued">
                 <div class="govuk-date-input__item">
                     <div class="govuk-form-group">
@@ -126,7 +102,7 @@ Add closure fields to file
                             Day
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day"
-                            name="passport-issued-day" type="text" pattern="[0-9]*" inputmode="numeric">
+                               name="passport-issued-day" type="text" pattern="[0-9]*" inputmode="numeric">
                     </div>
                 </div>
                 <div class="govuk-date-input__item">
@@ -135,8 +111,8 @@ Add closure fields to file
                             Month
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                            id="passport-issued-month" name="passport-issued-month" type="text" pattern="[0-9]*"
-                            inputmode="numeric">
+                               id="passport-issued-month" name="passport-issued-month" type="text" pattern="[0-9]*"
+                               inputmode="numeric">
                     </div>
                 </div>
                 <div class="govuk-date-input__item">
@@ -145,18 +121,18 @@ Add closure fields to file
                             Year
                         </label>
                         <input class="govuk-input govuk-date-input__input govuk-input--width-4"
-                            id="passport-issued-year" name="passport-issued-year" type="text" pattern="[0-9]*"
-                            inputmode="numeric">
+                               id="passport-issued-year" name="passport-issued-year" type="text" pattern="[0-9]*"
+                               inputmode="numeric">
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="govuk-form-group">
-            <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
-                    Title public
-                </label>
-            </h1>
+            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="event-name">
+                Title public
+            </label>
+            </h2>
         </div>
         <div class="govuk-form-group">
             <fieldset class="govuk-fieldset">
@@ -181,14 +157,10 @@ Add closure fields to file
         </div>
         <div id="show-me">
             <div class="govuk-form-group">
-                <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
-                        Title alternative
-                    </label>
-                    <div id="passport-issued-hint" class="govuk-hint">
-                        If the title of one file or a couple of files is sensitive, please amend this information at
-                        file level
-                    </div>
-                </h1>
+                <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="event-name">
+                    Title alternative
+                </label>
+                </h2>
                 <input class="govuk-input" id="event-name" name="event-name" type="text">
             </div>
         </div>
@@ -201,14 +173,14 @@ Add closure fields to file
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#yes').click(function () {
-            $('#show-me').show();
-        });
-        $('#no').click(function () {
-            $('#show-me').hide();
-        });
+  $(document).ready(function () {
+    $('#yes').click(function () {
+      $('#show-me').show();
     });
+    $('#no').click(function () {
+      $('#show-me').hide();
+    });
+  });
 </script>
 
 {% endblock %}
