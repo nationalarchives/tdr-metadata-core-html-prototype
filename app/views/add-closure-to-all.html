@@ -10,29 +10,56 @@ GOV.UK Prototype Kit
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-l">
-            Add closure field
+            Add closure information
         </h1>{{releaseVersion | log }}
-        <p class="govuk-body">Enter metadata for closure fields here.</p>
+        <p class="govuk-body">You must provide information for all fields.</p>
 
         <div class="govuk-warning-text">
             <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
             <strong class="govuk-warning-text__text">
                 <span class="govuk-warning-text__assistive">Warning</span>
-                Please note that this action applies to all 10 files in this folder. Also, if the title is sensitive to the public just beware that adding an alternative title will change the title of all files to sensitive.
+                Metadata will be applied to all files within this folder.
             </strong>
         </div>
 
         <div class="govuk-form-group">
-            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="years">
-                Closure period
+            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="event-name">
+                FOI asserted
             </label>
+                <div id="passport-issued-hint" class="govuk-hint">
+                    Date of Advisory Council Approval
+                </div>
             </h2>
-            <div id="closure-period-hint" class="govuk-hint">
-                Enter the amount of years this record will be closed for
-            </div>
-            <div class="govuk-input__wrapper"><input class="govuk-input govuk-input--width-5" id="years" name="years"
-                                                     type="text" spellcheck="false">
-                <div class="govuk-input__suffix" aria-hidden="true">years</div>
+            <div class="govuk-date-input" id="passport-issued">
+                <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+                            Day
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day"
+                               name="passport-issued-day" type="text" pattern="[0-9]*" inputmode="numeric">
+                    </div>
+                </div>
+                <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+                            Month
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                               id="passport-issued-month" name="passport-issued-month" type="text" pattern="[0-9]*"
+                               inputmode="numeric">
+                    </div>
+                </div>
+                <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                            Year
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-4"
+                               id="passport-issued-year" name="passport-issued-year" type="text" pattern="[0-9]*"
+                               inputmode="numeric">
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -44,7 +71,7 @@ GOV.UK Prototype Kit
                     </h2>
                 </legend>
                 <div id="closure-start-date-hint" class="govuk-hint">
-                    Date the record starts
+                    Date the file was last modified
                 </div>
                 <div class="govuk-date-input" id="closure-start-date">
                     <div class="govuk-date-input__item">
@@ -78,8 +105,21 @@ GOV.UK Prototype Kit
                         </div>
                     </div>
                 </div>
-
             </fieldset>
+        </div>
+
+        <div class="govuk-form-group">
+            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="years">
+                Closure period
+            </label>
+            </h2>
+            <div id="closure-period-hint" class="govuk-hint">
+                Number of years the record is closed from the closure start date
+            </div>
+            <div class="govuk-input__wrapper"><input class="govuk-input govuk-input--width-5" id="years" name="years"
+                                                     type="text" spellcheck="false">
+                <div class="govuk-input__suffix" aria-hidden="true">years</div>
+            </div>
         </div>
 
         <div class="govuk-form-group">
@@ -88,65 +128,60 @@ GOV.UK Prototype Kit
                 </label>
             </h2>
             <div id="foi-codes-hint" class="govuk-hint">
-                Enter the FOI exemption codes that apply and, if multiple, separate them with comma (,)<br/>23, 24, 25, 26,
-                27(1), 27(2), 28, 29, 30(1), 30(2), 31, 32, 33, 34, 35(1)(a), 35(1)(b), 35(1)(c), 35(1)(d), 36, 37(1)(a),
-                37(1)(aa), 37(1)(ab), 37(1)(ac), 37(1)(ad), 37(1)(b), 38, 39, 40(1), 40(2), 41, 42, 43(1), 43(2), 44
+                Select the exemption codes that apply.
             </div>
-            <input class="govuk-input" id="event-name" name="event-name" type="text">
+            <div class="govuk-form-group govuk-!-margin-bottom-3" id="first-select">
+                <select class="govuk-select" id="codes" name="codes">
+                    <option value="choose">Please choose...</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27-1">27(1)</option>
+                    <option value="27-2">27(2)</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30-1">30(1)</option>
+                    <option value="30-2">30(2)</option>
+                    <option value="31">31</option>
+                    <option value="32">32</option>
+                    <option value="33">33</option>
+                    <option value="34">34</option>
+                    <option value="35-1-a">35(1)(a)</option>
+                    <option value="35-1-b">35(1)(b)</option>
+                    <option value="35-1-c">35(1)(c)</option>
+                    <option value="35-1-d">35(1)(d)</option>
+                    <option value="36">36</option>
+                    <option value="37-1-a">37(1)(a)</option>
+                    <option value="37-1-aa">37(1)(aa)</option>
+                    <option value="37-1-ab">37(1)(ab)</option>
+                    <option value="37-1-ac">37(1)(ac)</option>
+                    <option value="37-1-ad">37(1)(ad)</option>
+                    <option value="37-1-b">37(1)(b)</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                    <option value="40-1">40(1)</option>
+                    <option value="40-2">40(2)</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43-1">43(1)</option>
+                    <option value="43-2">43(2)</option>
+                    <option value="44">44</option>
+                </select>
+            </div>
+            <a class="govuk-link govuk-link--no-visited-state" href="#" onclick="addAnotherSelect()">Add another exemption code</a>
         </div>
+
+
 
         <div class="govuk-form-group">
             <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="event-name">
-                    FOI exemption asserted
-                </label>
-                <div id="passport-issued-hint" class="govuk-hint">
-                    Date of the Advisory Council approval
-                </div>
-            </h2>
-            <div class="govuk-date-input" id="passport-issued">
-                <div class="govuk-date-input__item">
-                    <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
-                            Day
-                        </label>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day"
-                            name="passport-issued-day" type="text" pattern="[0-9]*" inputmode="numeric">
-                    </div>
-                </div>
-                <div class="govuk-date-input__item">
-                    <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
-                            Month
-                        </label>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                            id="passport-issued-month" name="passport-issued-month" type="text" pattern="[0-9]*"
-                            inputmode="numeric">
-                    </div>
-                </div>
-                <div class="govuk-date-input__item">
-                    <div class="govuk-form-group">
-                        <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
-                            Year
-                        </label>
-                        <input class="govuk-input govuk-date-input__input govuk-input--width-4"
-                            id="passport-issued-year" name="passport-issued-year" type="text" pattern="[0-9]*"
-                            inputmode="numeric">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="govuk-form-group">
-            <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="event-name">
-                    Title public
+                Is the title closed?
                 </label>
             </h2>
         </div>
         <div class="govuk-form-group">
             <fieldset class="govuk-fieldset">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                    Is the title sensitive to the public?
-                </legend>
                 <div class="govuk-radios">
                     <div class="govuk-radios__item">
                         <input class="govuk-radios__input" id="yes" name="is-the-title-sensitive" type="radio" value="yes">
@@ -166,9 +201,12 @@ GOV.UK Prototype Kit
         <div id="show-me">
             <div class="govuk-form-group">
                 <h2 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="event-name">
-                        Title alternative
+                    Redacted title
                     </label>
                 </h2>
+                <div id="redacted-title-hint" class="govuk-hint">
+                    The title can be redacted or sanitised. Avoid withheld titles where possible.
+                </div>
                 <input class="govuk-input" id="event-name" name="event-name" type="text">
             </div>
         </div>
@@ -189,6 +227,13 @@ GOV.UK Prototype Kit
             $('#show-me').hide();
         });
     });
+
+    function addAnotherSelect() {
+      var firstSelect = document.querySelector('#first-select');
+      var nextSelect = firstSelect.cloneNode(true);
+      nextSelect.id = 'second-select';
+      firstSelect.after(nextSelect);
+    }
 </script>
 
 {% endblock %}

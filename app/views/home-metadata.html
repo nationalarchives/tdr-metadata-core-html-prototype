@@ -6,49 +6,48 @@ GOV.UK Prototype Kit
 
 {% block content %}
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <span class="govuk-caption-l">Step 5 of 6</span>
-    <h1 class="govuk-heading-l">
-      Add closure and other metadata
-    </h1>{{releaseVersion | log }}
+    <div class="govuk-grid-column-two-thirds">
+        <span class="govuk-caption-l">Step 5 of 6</span>
+        <h1 class="govuk-heading-l">
+            Choose to add metadata
+        </h1>{{releaseVersion | log }}
 
-    <p class="govuk-body">You can now add or edit closure and other metadata to your records. Or you can proceed without by
-      clicking ‘Continue’ at the bottom of this page.</p>
+        <p class="govuk-body">You can add or edit metadata, including closure information, to your records by clicking
+            on
+            the links below. Alternatively, click ‘Continue’ to proceed without adding metadata.</p>
 
-    <h3 class="govuk-heading-m">Folder uploaded: chocolate-muffin</h3>
-
-    <ul class="govuk-list govuk-list--bullet">
-      <li>
-        <p class="govuk-body">For all files, you can add or edit closure and other metadata.
-          You can choose the metadata fields that are required.
+        <h3 class="govuk-heading-s">Metadata for top-level folder</h3>
+        <p class="govuk-body">Click the link to add or edit metadata for all files within your uploaded top-level
+            folder.
         </p>
-
-        <p class="govuk-body"><a class="govuk-link" href="/edit-folder/{{ currentPath.join('%2F') }}">Add / edit
-          closure and other metadata for all files in the folder</a></p>
-
-          <div class="govuk-warning-text">
+        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/edit-folder/{{ currentPath.join('%2F') }}">Add or edit
+            metadata for top-level folder
+        </a></p>
+        <div class="govuk-warning-text">
             <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
             <strong class="govuk-warning-text__text">
-              <span class="govuk-warning-text__assistive">Warning</span>
-              Adding metadata at folder level will apply to all the files within the folder
+                <span class="govuk-warning-text__assistive">Warning</span>
+                Adding metadata at folder level will apply to all the files within the folder
             </strong>
-          </div>
-      </li>
-      <li>
-        <p class="govuk-body">For individual files or subfolders, you can add or edit closure and other metadata.
-          You can choose the metadata fields that are required. You can also delete individual files from this consignment.
+        </div>
+
+        <h3 class="govuk-heading-s">Metadata at file or subfolder level
+        </h3>
+
+        <p class="govuk-body">Click the link to add or edit metadata for individual files or sub-folders.
+            You can also delete individual files and subfolders from this consignment.
         </p>
 
-        <p class="govuk-body"><a class="govuk-link" href="/browse/{{ currentPath }}">Add / edit closure and other metadata for
-          individual files or folders</a></p>
-      </li>
-    </ul>
+        <p class="govuk-body">
+            <a class="govuk-link govuk-link--no-visited-state" href="/browse/{{ currentPath }}">Add or edit metadata at file or subfolder level
+            </a>
+        </p>
 
-    <a href="/summary.html" role="button" draggable="false" class="govuk-button"
-      data-module="govuk-button">
-      Continue
-    </a>
-  </div>
+        <a href="/summary.html" role="button" draggable="false" class="govuk-button"
+           data-module="govuk-button">
+            Continue
+        </a>
+    </div>
 </div>
 
 {% endblock %}
